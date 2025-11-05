@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta - NutriTrack Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="nt-header">
+    <div class="container">
+      <a href="../index.html" class="brand">NutriTrackWeb</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="form-wrap">
+      <form class="form card-soft" action="registration-success.html">
+        <h2 class="form__title">Crear Cuenta</h2>
+
+        <div class="field">
+          <span>Nombre</span>
+          <input type="text" placeholder="Tu nombre completo" required>
+        </div>
+        <div class="field">
+          <span>Correo</span>
+          <input type="email" placeholder="tu.correo@ejemplo.com" required>
+        </div>
+        <div class="field">
+          <span>Contraseña</span>
+          <input type="password" placeholder="********" required>
+        </div>
+        <div class="field">
+          <span>Confirmación de Contraseña</span>
+          <input type="password" placeholder="********" required>
+        </div>
+
+        <div class="field">
+          <span>Nivel de actividad</span>
+          <select required>
+            <option value="">Selecciona tu nivel de actividad</option>
+            <option>Sedentario</option>
+            <option>Activo</option>
+            <option>Muy activo</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <span>Tipo de dieta</span>
+          <select required>
+            <option value="">Selecciona tu tipo de dieta</option>
+            <option>Omnívora</option>
+            <option>Vegetariana</option>
+            <option>Vegana</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="nt-footer">
+    <div class="container footer__inner">
+      <small>Legal</small>
+      <nav class="social">
+        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Cuenta - NutriTrack Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="main-nav-container">
+      <a href="dashboard.html" class="logo-text-header">NutriTrackWeb</a>
+    </div>
+    <div class="header-actions">
+      <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="form-wrap">
+      <form class="form card-soft">
+        <h2 class="form__title">Editar Cuenta</h2>
+
+        <div class="grid-2">
+          <div class="field"><span>Nombre</span><input type="text" value="Juan Pérez"></div>
+          <div class="field"><span>Correo</span><input type="email" value="juan.perez@ejemplo.com"></div>
+          <div class="field"><span>Contraseña</span><input type="password" value="********"></div>
+          <div class="field"><span>Confirmación de Contraseña</span><input type="password" value="********"></div>
+          <div class="field"><span>Nivel de actividad</span>
+            <select><option>Activo</option><option>Sedentario</option></select>
+          </div>
+          <div class="field"><span>Tipo de dieta</span>
+            <select><option>Omnívora</option><option>Vegana</option></select>
+          </div>
+          <div class="field"><span>Unidad de medida</span>
+            <select><option>Kilogramos (Kg)</option><option>Libras (Lb)</option></select>
+          </div>
+          <div class="field"><span>Peso (Kg)</span><input type="number" value="70"></div>
+          <div class="field grid-span-2"><span>Estatura (Cm)</span><input type="number" value="175"></div>
+        </div>
+
+        <div class="form__actions grid-span-2">
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <a href="dashboard.html" class="btn btn-ghost">Cancelar</a>
+          <a href="#delete-confirm" class="btn btn-danger">Eliminar Cuenta</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Modal de confirmación -->
+  <div id="delete-confirm" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" onclick="window.location.hash='';">✖</button>
+      <div class="modal__icon">🗑️</div>
+      <h3>Confirmación de Eliminación</h3>
+      <p>¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+      <div class="modal__actions">
+        <a href="#" class="btn btn-ghost" onclick="window.location.hash='';">Cancelar</a>
+        <a href="../index.html" class="btn btn-danger">Confirmar Eliminación</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="nt-footer">
+    <div class="container footer__inner">
+      <small>Legal</small>
+      <nav class="social">
+        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
