@@ -266,6 +266,35 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 .radio-option:hover { background-color: #F8F8F8; }
 .radio-option input:checked + label { border-left: 5px solid var(--color-principal); padding-left: 10px; }
 
+/* ---- ESTILOS ADICIONALES PARA LAS OPCIONES INTERACTIVAS EN MODALES (Hover/Focus) ---- */
+
+/* Estilos de selección de prácticas (Añadir) */
+.card-selection {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+.card-selection:hover,
+.card-selection:focus-within { /* focus-within para capturar el foco del input */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-principal); /* Destaca la opción */
+}
+
+/* Estilos de selección de reemplazo (Radio Options) */
+.radio-option {
+    /* (Ya tiene estilos base) */
+    transition: background-color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+.radio-option:hover {
+    background-color: #F8F8F8; /* Sutil cambio de color al pasar el ratón */
+}
+/* Estilo cuando el radio está seleccionado (mantenemos el borde izquierdo de tu CSS original) */
+.radio-option input:checked + label {
+    border-left: 5px solid var(--color-principal);
+    padding-left: 10px;
+}
+
 .practicas-header { background-color: #EDE7F6; color: var(--color-texto-principal); border-radius: 8px 8px 0 0; padding: 15px 20px; font-weight: bold; }
 .practicas-list .list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid var(--color-borde); margin-bottom: -1px; background-color: var(--color-fondo-card); }
 .practicas-list .list-item-actions { display: flex; gap: 10px; }
