@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes y Análisis - NutriTrackWeb</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+
+        <div class="main-nav-container">
+
+            <a href="#" class="logo-text-header">NutriTrackWeb</a>
+            
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Registro diario</a></li>
+                    <li><a href="#">Metas</a></li>
+                    <li><a href="#">Prácticas</a></li>
+                    <li><a href="#" class="active">Reportes</a></li>
+                    <li><a href="#">Aprender</a></li>
+                    <li><a href="#">Foro</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-actions">
+            <form class="search-bar">
+                <input type="search" class="search-input-header" placeholder="Buscar...">
+            </form>
+            <button class="btn-header-logout">Cerrar sesión</button>
+            <a href="#" class="avatar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12ZM12 14C8.68629 14 6 16.6863 6 20H18C18 16.6863 15.3137 14 12 14Z"/>
+                </svg>
+            </a>
+        </div>
+
+    </header>
+
+    <main class="page-container">
+
+        <div class="report-header">
+            <h1 class="module-title">Reportes y Análisis 📈</h1>
+        </div>
+
+        <div class="time-filter">
+            <button class="btn btn-ghost">Semanal</button>
+            <button class="btn btn-primary">Mensual</button>
+            <button class="btn btn-ghost">Anual</button>
+        </div>
+
+        <div class="reports-grid">
+            
+            <div class="card">
+                <h3>Consumo por Tipo de Alimento</h3>
+                <p class="p_subtle">Desglose de tus hábitos alimenticios por mensual.</p>
+                <div class="chart-placeholder">
+                    <svg viewBox="0 0 400 300" style="font-family: Arial, sans-serif;">
+                        
+                        <rect x="0" y="0" width="400" height="300" fill="transparent" />
+
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#f0f0f0" stroke-width="20"/>
+                        
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#4CAF50" stroke-width="20" stroke-dasharray="35 65" stroke-dashoffset="0" transform="rotate(-90 200 120)"/>
+                        
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#E0E0E0" stroke-width="20" stroke-dasharray="20 80" stroke-dashoffset="0" transform="rotate(36 200 120)"/>
+                        
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#66BB6A" stroke-width="20" stroke-dasharray="25 75" stroke-dashoffset="0" transform="rotate(108 200 120)"/>
+                        
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#A5D6A7" stroke-width="20" stroke-dasharray="10 90" stroke-dashoffset="0" transform="rotate(198 200 120)"/>
+                        
+                        
+                        <circle cx="200" cy="120" r="80" fill="transparent" stroke="#757575" stroke-width="20" stroke-dasharray="10 90" stroke-dashoffset="0" transform="rotate(234 200 120)"/>
+
+                        
+                        <text x="140" y="75" fill="#757575" font-size="10" text-anchor="middle">35%</text> 
+                        <text x="260" y="75" fill="#757575" font-size="10" text-anchor="middle">20%</text> 
+                        <text x="150" y="185" fill="#757575" font-size="10" text-anchor="middle">25%</text> 
+                        <text x="250" y="185" fill="#757575" font-size="10" text-anchor="middle">10%</text> 
+                        
+                        
+                        <g transform="translate(10, 240)" style="font-size: 10px; fill: #333333;">
+                            <rect x="0" y="0" width="10" height="10" fill="#E0E0E0"></rect><text x="13" y="9">Frutas</text>
+                            <rect x="50" y="0" width="10" height="10" fill="#A5D6A7"></rect><text x="63" y="9">Proteínas</text>
+                            <rect x="120" y="0" width="10" height="10" fill="#66BB6A"></rect><text x="133" y="9">Vegetales</text>
+                            <rect x="190" y="0" width="10" height="10" fill="#4CAF50"></rect><text x="203" y="9">Cereales</text>
+                            <rect x="260" y="0" width="10" height="10" fill="#757575"></rect><text x="273" y="9">Ultraprocesados</text>
+                        </g>
+
+                    </svg>
+                    </div>
+            </div>
+
+            <div class="card">
+                <h3>Tendencias de Prácticas Saludables</h3>
+                <p class="p_subtle">Tu progreso en hábitos saludables por mensual.</p>
+                <div class="chart-placeholder">
+                    <svg viewBox="0 0 400 300" style="font-family: Arial, sans-serif;">
+                        
+                        <line x1="50" y1="250" x2="350" y2="250" stroke="#ccc" stroke-width="1" />
+                        <line x1="50" y1="40" x2="50" y2="250" stroke="#ccc" stroke-width="1" />
+
+                        
+                        <line x1="50" y1="210" x2="350" y2="210" stroke="#eee" stroke-width="0.5" />
+                        <line x1="50" y1="170" x2="350" y2="170" stroke="#eee" stroke-width="0.5" />
+                        <line x1="50" y1="130" x2="350" y2="130" stroke="#eee" stroke-width="0.5" />
+                        <line x1="50" y1="90" x2="350" y2="90" stroke="#eee" stroke-width="0.5" />
+
+                        
+                        <text x="40" y="250" font-size="11" fill="#757575" text-anchor="end" dominant-baseline="middle">0</text>
+                        <text x="40" y="210" font-size="11" fill="#757575" text-anchor="end" dominant-baseline="middle">8</text>
+                        <text x="40" y="170" font-size="11" fill="#757575" text-anchor="end" dominant-baseline="middle">16</text>
+                        <text x="40" y="130" font-size="11" fill="#757575" text-anchor="end" dominant-baseline="middle">24</text>
+                        <text x="40" y="90" font-size="11" fill="#757575" text-anchor="end" dominant-baseline="middle">32</text>
+                        
+                        
+                        <polyline fill="none" stroke="#66BB6A" stroke-width="2" 
+                                points="80,130 150,110 220,150 290,90 320,80" />
+                        
+                        
+                        <circle cx="80" cy="130" r="4" fill="#66BB6A" stroke="#fff" stroke-width="1.5"/>
+                        <circle cx="150" cy="110" r="4" fill="#66BB6A" stroke="#fff" stroke-width="1.5"/>
+                        <circle cx="220" cy="150" r="4" fill="#66BB6A" stroke="#fff" stroke-width="1.5"/>
+                        <circle cx="290" cy="90" r="4" fill="#66BB6A" stroke="#fff" stroke-width="1.5"/>
+                        <circle cx="320" cy="80" r="4" fill="#66BB6A" stroke="#fff" stroke-width="1.5"/>
+
+                        
+                        <text x="80" y="265" font-size="11" fill="#757575" text-anchor="middle">Semana 1</text>
+                        <text x="150" y="265" font-size="11" fill="#757575" text-anchor="middle">Semana 2</text>
+                        <text x="220" y="265" font-size="11" fill="#757575" text-anchor="middle">Semana 3</text>
+                        <text x="290" y="265" font-size="11" fill="#757575" text-anchor="middle">Semana 4</text>
+                        
+                        
+                        <rect x="140" y="285" width="10" height="2" fill="#66BB6A"></rect>
+                        <text x="155" y="286" font-size="11" fill="#333" dominant-baseline="middle">Prácticas completadas</text>
+
+                    </svg>
+                </div>
+            </div>
+
+        </div> 
+        
+        <div class="card">
+            <h3>Comparación de Metas</h3>
+            <p class="p_subtle">Tu progreso actual frente a tus metas por mensual.</p>
+
+            <div class="table-responsive">
+                <table class="data-table metas-table">
+                    <thead>
+                        <tr>
+                            <th>Meta</th>
+                            <th>Objetivo</th>
+                            <th>Actual</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Beber 2L de agua 💧</td>
+                            <td>60 L</td>
+                            <td>55 L</td>
+                            <td><span class="status-badge status-warning">En curso</span></td>
+                        </tr>
+                        <tr>
+                            <td>12 sesiones de ejercicio 🏋️</td>
+                            <td>12</td>
+                            <td>10</td>
+                            <td><span class="status-badge status-warning">En curso</span></td>
+                        </tr>
+                        <tr>
+                            <td>20 porciones de fruta 🍎</td>
+                            <td>80</td>
+                            <td>80</td>
+                            <td><span class="status-badge status-success">Completado</span></td>
+                        </tr>
+                         <tr>
+                            <td>Meditar 10 mins/día 🧘</td>
+                            <td>300 mins</td>
+                            <td>0 mins</td>
+                            <td><span class="status-badge status-danger">En inicio</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="download-cta">
+            <button class="btn btn-primary btn--lg">
+                📄 Descargar Reporte PDF
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="nt-footer">
+        <div class="container footer__inner">
+            <span>Explorar &nbsp; Compañía &nbsp; Legal</span>
+            <div class="social">
+                </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="#" class="mobile-nav-link">
+            <span class="mobile-nav-icon">🏠</span>
+            <span class="mobile-nav-text">Inicio</span>
+        </a>
+        <a href="#" class="mobile-nav-link">
+            <span class="mobile-nav-icon">➕</span>
+            <span class="mobile-nav-text">Registro</span>
+        </a>
+        <a href="#" class="mobile-nav-link">
+            <span class="mobile-nav-icon">❤️</span>
+            <span class="mobile-nav-text">Metas</span>
+        </a>
+        <a href="#" class="mobile-nav-link">
+            <span class="mobile-nav-icon">🌱</span>
+            <span class="mobile-nav-text">Prácticas</span>
+        </a>
+        <a href="#" class="mobile-nav-link active">
+            <span class="mobile-nav-icon">📊</span>
+            <span class="mobile-nav-text">Reportes</span>
+        </a>
+         <a href="#" class="mobile-nav-link">
+            <span class="mobile-nav-icon">👤</span>
+            <span class="mobile-nav-text">Perfil</span>
+        </a>
+    </nav>
+
+</body>
+</html>
