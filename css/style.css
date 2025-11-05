@@ -358,3 +358,104 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     /* Ajustes adicionales de padding en móvil */
     .page-container { margin-top: 20px; padding: 0 10px; }
 }
+
+/* ===============================
+   VISOR DE PROGRESO (Metas)
+   =============================== */
+.goals-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* tabla (2) + visor (1) */
+  gap: 20px;
+}
+@media (max-width: 980px){ .goals-grid { grid-template-columns: 1fr; } }
+
+.progress--lg { height: 14px; background: var(--color-borde); border-radius: 999px; overflow: hidden; }
+.progress--lg > .bar { height: 100%; background: var(--color-cta); width: 0%; transition: width .35s ease; border-radius: 999px; }
+
+.viewer {
+  display: grid; gap: 12px;
+}
+.viewer__title { font-weight: 700; font-size: 1.05rem; color: var(--color-texto-principal); }
+.viewer__row  { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.viewer__pct  { font-variant-numeric: tabular-nums; min-width: 3ch; text-align: right; }
+.viewer input[type="range"] { width: 100%; }
+.viewer__hint { color: var(--color-texto-secundario); font-size: .9rem; }
+.viewer__actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+
+/* =======================================================
+   GOALS: barras de progreso + modales <dialog>
+   ======================================================= */
+
+/* Barras de progreso (tabla y tarjetas) */
+.progress {
+  height: 10px;
+  background: var(--color-borde);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__bar {
+  height: 100%;
+  background: var(--color-cta);
+  width: 0;             /* se anima desde 0 */
+  transition: width .6s ease;
+}
+
+/* Tarjeta resumen de progreso (vista rápida) */
+.goals-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.goal-chip {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fff;
+}
+.goal-chip__title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-texto-principal);
+}
+.goal-chip__row {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 10px;
+  font-size: .9rem;
+  color: var(--color-texto-secundario);
+}
+.goal-chip .progress { margin-top: 6px; }
+
+/* <dialog> nativo */
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog.modal {
+  border: 0;
+  padding: 0;
+  border-radius: 10px;
+}
+dialog.modal.card { padding: 20px; }
+
+
+/* ===== FIX: compatibilidad con <dialog> nativo ===== */
+dialog.modal {            /* solo afecta a tus <dialog class="modal"> */
+  /* Anula posiciones del bloque .modal usado para :target */
+  position: static;
+  inset: auto;
+  border: 0;
+  padding: 0;
+  border-radius: 10px;
+  background: var(--color-fondo-card);
+  /* Si en otro sitio .modal tiene display:none, aquí lo reactivamos al abrir */
+  display: none;
+}
+dialog.modal[open] {
+  display: block;         /* visible mientras tenga el atributo [open] */
+}
+dialog.modal.card {
+  padding: 20px;          /* conserva tu “card” */
+}
+dialog::backdrop {
+  background: rgba(0,0,0,.45);  /* oscurece el fondo como en las capturas */
+}

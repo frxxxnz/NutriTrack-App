@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mis Metas — NutriTrack Web</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-text-header"><a href="../index.html" class="brand">NutriTrackWeb</a></div>
+
+    <nav class="main-nav-container">
+      <ul class="main-menu">
+        <li><a href="../pages/dashboard.html">Inicio</a></li>
+        <li><a href="../pages/daily-log.html">Registro diario</a></li>
+        <li><a href="../pages/goals.html"><strong>Metas</strong></a></li>
+        <li><a href="../pages/practices.html">Prácticas</a></li>
+        <li><a href="../pages/reports.html">Reportes</a></li>
+        <li><a href="../pages/learn.html">Aprender</a></li>
+        <li><a href="../pages/forum.html">Foro</a></li>
+      </ul>
+
+      <div class="search-bar">
+        <input class="search-input-header" type="search" placeholder="Buscar..." />
+      </div>
+
+      <div class="header-actions">
+        <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
+        <a class="profile-icon" title="Cuenta" href="../pages/account-settings.html">👤</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-container">
+    <h1 class="module-title">Mis Metas</h1>
+
+    <!-- Fila superior: búsqueda + filtros + CTA -->
+    <div class="card" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <input id="goal-search" class="search-input-header" style="max-width:380px;" placeholder="Buscar por nombre o frecuencia..." />
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-edit" data-filter="all">Todos</button>
+        <button class="btn btn-edit" data-filter="active">Activos</button>
+        <button class="btn btn-edit" data-filter="done">Completados</button>
+        <button class="btn btn-edit" data-filter="pending">Pendientes</button>
+      </div>
+      <div style="margin-left:auto;">
+        <button id="btn-open-new" class="btn btn-primary">+ Agregar Objetivo</button>
+      </div>
+    </div>
+
+    <!-- Tabla de metas -->
+    <div class="card table-responsive">
+      <table class="data-table" id="goals-table">
+        <thead>
+          <tr>
+            <th>Nombre del Objetivo</th>
+            <th>Frecuencia</th>
+            <th style="width:240px;">Progreso</th>
+            <th class="actions">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ejemplos (puedes reemplazar por tu data real) -->
+          <tr>
+            <td>Beber 2L de agua diariamente</td>
+            <td>Diario</td>
+            <td>
+              <div class="progress"><div class="progress__bar" style="width:75%"></div></div>
+              <small>75%</small>
+            </td>
+            <td class="actions">
+              <button class="btn btn-edit btn-sm" data-edit="1">Editar</button>
+              <button class="btn btn-danger btn-sm" data-delete="1">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Hacer ejercicio 3 veces a la semana</td>
+            <td>Semanal</td>
+            <td>
+              <div class="progress"><div class="progress__bar" style="width:50%"></div></div>
+              <small>50%</small>
+            </td>
+            <td class="actions">
+              <button class="btn btn-edit btn-sm" data-edit="2">Editar</button>
+              <button class="btn btn-danger btn-sm" data-delete="2">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Dormir al menos 8 horas al día</td>
+            <td>Diario</td>
+            <td>
+              <div class="progress"><div class="progress__bar" style="width:55%"></div></div>
+              <small>55%</small>
+            </td>
+            <td class="actions">
+              <button class="btn btn-edit btn-sm" data-edit="3">Editar</button>
+              <button class="btn btn-danger btn-sm" data-delete="3">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="nt-footer">
+    <div class="container footer__inner">
+      <small>Legal</small>
+      <nav class="social"><a>Fb</a><a>Tw</a><a>Ig</a><a>In</a></nav>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL: NUEVA META ============ -->
+  <dialog id="modal-new" class="modal card" style="max-width:680px;">
+    <h2 class="module-title" style="margin-top:0;">Agregar Nuevo Objetivo</h2>
+    <form id="form-new" class="registro-form">
+      <label>Nombre del Objetivo</label>
+      <input type="text" required placeholder="Ej. Beber 2L de agua diarios" />
+
+      <label>Descripción</label>
+      <textarea rows="4" placeholder="¿Por qué es importante? ¿Cómo lo lograrás?"></textarea>
+
+      <label>Frecuencia</label>
+      <select>
+        <option>Diaria</option>
+        <option>Semanal</option>
+        <option>Mensual</option>
+        <option>Largo Plazo</option>
+        <option>Fecha Exacta</option>
+      </select>
+
+      <div class="form-group-inline">
+        <div class="input-group">
+          <label>Fecha de Inicio</label>
+          <input type="date" />
+        </div>
+        <div class="input-group">
+          <label>Fecha de Fin</label>
+          <input type="date" />
+        </div>
+      </div>
+
+      <label><input type="checkbox" /> Objetivo recurrente</label>
+
+      <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
+        <button type="button" class="btn" data-close-new>Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar Objetivo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ============ MODAL: EDITAR META ============ -->
+  <dialog id="modal-edit" class="modal card" style="max-width:560px;">
+    <h2 class="module-title" style="margin-top:0;">Editar Objetivo de Nutrición</h2>
+    <form id="form-edit" class="registro-form">
+      <label>Nombre del Objetivo</label>
+      <input id="edit-name" type="text" value="Perder 5 kg" />
+
+      <label>Tipo de Objetivo</label>
+      <select>
+        <option>Pérdida de Peso</option>
+        <option>Hidratación</option>
+        <option>Alimentación</option>
+        <option>Actividad Física</option>
+        <option>Descanso</option>
+      </select>
+
+      <div class="form-group-inline">
+        <div class="input-group">
+          <label>Valor Objetivo</label>
+          <input type="number" value="5" />
+        </div>
+        <div class="input-group">
+          <label>Unidad</label>
+          <select>
+            <option>kg</option><option>%</option><option>L</option><option>porciones</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Frecuencia</label>
+      <select>
+        <option>Semanal</option><option>Diaria</option><option>Mensual</option>
+      </select>
+
+      <div class="form-group-inline">
+        <div class="input-group">
+          <label>Fecha de Inicio</label>
+          <input type="date" value="2024-06-01" />
+        </div>
+        <div class="input-group">
+          <label>Fecha Límite</label>
+          <input type="date" value="2024-08-31" />
+        </div>
+      </div>
+
+      <label>Progreso Actual</label>
+      <input type="number" value="2" />
+
+      <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
+        <button type="button" class="btn" data-close-edit>Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ============ MODAL: CONFIRMAR ELIMINACIÓN ============ -->
+  <dialog id="modal-delete" class="modal card" style="max-width:420px;">
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="modal__close" data-close-delete>✖</button>
+    </div>
+    <h3 class="module-title" style="margin-top:0;">Confirmar Eliminación</h3>
+    <p style="margin:8px 0 16px;">
+      ¿Estás seguro que deseas eliminar este objetivo? Esta acción no se puede deshacer.
+    </p>
+    <div style="display:flex; gap:12px; justify-content:flex-end;">
+      <button class="btn" data-close-delete>Cancelar</button>
+      <button class="btn btn-danger">Eliminar</button>
+    </div>
+  </dialog>
+
+  <script src="../js/nutritional-goals.js"></script>
+</body>
+</html>
