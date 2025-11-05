@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack Web - Registro Diario</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1 class="logo-text-header">NutriTrack Web</h1>
+
+        <nav class="main-nav-container">
+            <ul class="main-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="registro_diario.html">Registro diario</a></li>
+                <li><a href="metas.html">Metas</a></li>
+                <li><a href="practicas_saludables.html">Prácticas</a></li>
+                <li><a href="reportes.html">Reportes</a></li>
+                <li><a href="#">Aprender</a></li>
+                <li><a href="foro.html">Foro</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <input type="search" placeholder="Buscar..." class="search-input-header">
+            <button class="btn btn-header-logout">Cerrar sesión</button>
+            <div class="profile-icon">👤</div>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <h2 class="module-title">Registro Diario de Comidas</h2>
+
+        <div class="registro-layout">
+
+            <div class="registro-form-column">
+
+                <div class="card card-small">
+                    <h3>Seleccionar Fecha</h3>
+                    <input type="date" value="2025-09-26">
+                </div>
+
+                <div class="card">
+                    <h3>🍽️ Registrar Comida</h3>
+                    <form class="registro-form">
+                        <label for="nombre-alimento">Nombre del alimento</label>
+                        <input type="text" id="nombre-alimento" placeholder="Ej. Manzana">
+
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria">
+                            <option value="">Seleccionar categoría</option>
+                            <option value="fruta">Fruta</option>
+                            <option value="proteina">Proteína</option>
+                            <option value="carbohidrato">Carbohidrato</option>
+                        </select>
+
+                        <div class="form-group-inline">
+                            <div class="input-group">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" id="cantidad" placeholder="Agregar cantidad...">
+                            </div>
+                            <div class="input-group">
+                                <label for="unidad">Peso/Unidades</label>
+                                <select id="unidad">
+                                    <option value="">Seleccionar</option>
+                                    <option value="gramos">Gramos (g)</option>
+                                    <option value="unidades">Unidades</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                </div>
+
+                <div class="card card-resumen">
+                    <h3>Resumen Diario</h3>
+                    <div class="resumen-item"><span>Fruta</span><span>17%</span></div>
+                    <div class="resumen-item"><span>Proteína</span><span>17%</span></div>
+                    <div class="resumen-item"><span>Carbohidrato</span><span>17%</span></div>
+                </div>
+
+            </div>
+
+            <div class="comidas-registradas-column">
+                <div class="card card-full">
+                    <h3>Comidas Registradas</h3>
+                    <input type="search" placeholder="Buscar comidas..." class="search-input">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Alimento</th>
+                                    <th>Categoría</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Manzana</td>
+                                    <td>Fruta</td>
+                                    <td class="actions">
+                                        <a href="#modal-editar-comida" class="btn btn-edit">Editar</a>
+                                        <a href="#modal-eliminar-comida" class="btn btn-delete">Eliminar</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pechuga de pollo</td>
+                                    <td>Proteína</td>
+                                    <td class="actions">
+                                        <a href="#modal-editar-comida" class="btn btn-edit">Editar</a>
+                                        <a href="#modal-eliminar-comida" class="btn btn-delete">Eliminar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+   <nav class="mobile-nav-bar">
+        <a href="../index.html" class="mobile-nav-link">
+            <span class="mobile-nav-icon">🏠</span>
+            <span class="mobile-nav-text">Inicio</span>
+        </a>
+        <a href="registro_diario.html" class="mobile-nav-link">
+            <span class="mobile-nav-icon">🍎</span>
+            <span class="mobile-nav-text">Registro</span>
+        </a>
+        <a href="metas.html" class="mobile-nav-link">
+            <span class="mobile-nav-icon">🎯</span>
+            <span class="mobile-nav-text">Metas</span>
+        </a>
+        <a href="practicas_saludables.html" class="mobile-nav-link active">
+            <span class="mobile-nav-icon">🌱</span>
+            <span class="mobile-nav-text">Prácticas</span>
+        </a>
+        <a href="reportes.html" class="mobile-nav-link">
+            <span class="mobile-nav-icon">📊</span>
+            <span class="mobile-nav-text">Reportes</span>
+        </a>
+        <a href="perfil.html" class="mobile-nav-link">
+            <span class="mobile-nav-icon">👤</span>
+            <span class="mobile-nav-text">Perfil</span>
+        </a>
+    </nav>
+
+    <<div id="modal-editar-comida" class="modal-overlay">
+    <a href="#" class="modal-close-target"></a> 
+    
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h3 class="modal-title">Editar Comida</h3>
+        <form>
+            <label for="edit-nombre">Nombre de la Comida</label>
+            <input type="text" id="edit-nombre" value="Salmón a la parrilla con espárragos">
+
+            <label for="edit-categoria">Categoría</label>
+            <select id="edit-categoria">
+                <option value="proteina" selected>Proteína</option>
+                <option value="cena">Cena</option>
+                <option value="almuerzo">Almuerzo</option>
+            </select>
+            
+            <label for="edit-cantidad">Cantidad</label>
+            <input type="number" id="edit-cantidad" value="150">
+            
+            <label for="edit-unidad">Peso/Unidades</label>
+            <select id="edit-unidad">
+                <option value="gramos" selected>Gramos (g)</option>
+                <option value="unidades">Unidades</option>
+            </select>
+
+            <div class="modal-actions">
+                <a href="#" class="btn btn-secondary modal-close-btn">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="modal-eliminar-comida" class="modal-overlay">
+    <a href="#" class="modal-close-target"></a>
+
+    <div class="modal-content modal-small" onclick="event.stopPropagation()">
+        <h3 class="modal-title">Eliminar Comida</h3>
+        <p>¿Estás seguro que quieres eliminar la comida <strong>Manzana</strong>? Esta acción no se puede deshacer.</p>
+        <div class="modal-actions">
+            <a href="#" class="btn btn-secondary modal-close-btn">Cancelar</a>
+            <button type="button" class="btn btn-danger">Confirmar eliminación</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
