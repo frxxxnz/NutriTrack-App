@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro Exitoso • NutriTrack</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <!-- Header limpio: logo + menú (opcional) + acciones a la derecha -->
+  <header class="main-header">
+    <div class="main-nav-container">
+      <a href="../index.html" class="logo-text-header">NutriTrackWeb</a>
+      <ul class="main-menu">
+        <li><a href="dashboard.html">Inicio</a></li>
+        <li><a href="registro_alimentos.html">Registro diario</a></li>
+        <li><a href="nutritional-goals.html">Metas</a></li>
+        <li><a href="practicas_saludables.html">Prácticas</a></li>
+        <li><a href="regitro-y-analisis.html">Reportes</a></li>
+        <li><a href="#">Aprender</a></li>
+        <li><a href="#">Foro</a></li>
+      </ul>
+    </div>
+
+    <div class="header-actions">
+      <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
+      <a class="profile-icon" href="account-settings.html" aria-label="Cuenta">👤</a>
+    </div>
+  </header>
+
+  <!-- Contenido centrado -->
+  <main class="page-container" style="display:grid; place-items:center; min-height: calc(100vh - 64px - 64px);">
+    <section class="card" style="max-width:720px; text-align:center;">
+      <h1 style="margin-bottom:12px; color:var(--color-texto-principal); font-size:clamp(22px, 4vw, 32px);">
+        ¡Tu cuenta ha sido creada con éxito!
+      </h1>
+
+      <div style="margin-top:20px;">
+        <a class="btn btn-primary" href="dashboard.html">Ir al Dashboard</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
+</body>
+</html>

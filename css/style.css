@@ -1,0 +1,430 @@
+/* ======================================================= */
+/* 1. GUÍA DE ESTILOS: VARIABLES, RESET Y TIPOGRAFÍA */
+/* ======================================================= */
+
+:root {
+    /* COLORES PRINCIPALES Y DE MARCA */
+    --color-principal: #4CAF50;         /* Verde saludable (Marca) */
+    --color-secundario: #A5D6A7;       /* Verde claro (Énfasis/Gráficos) */
+    --color-cta: #43A047;              /* Verde intenso (Botones de Acción) */
+    --color-error: #E53935;            /* Rojo (Eliminar) */
+    --color-exito: #66BB6A;            /* Verde medio (Completado) */
+    --color-fondo-app: #EFE7DC;         /* Beige claro */
+    --color-texto-principal: #333333;   /* Negro grisáceo */
+    --color-texto-secundario: #757575;  /* Gris medio */
+    --color-borde: #E0E0E0;            /* Gris claro */
+    --color-fondo-card: white;          /* Fondo de los contenedores de contenido */
+    --font-principal: 'Arial', sans-serif;
+}
+
+/* RESETEO BÁSICO */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-principal);
+    line-height: 1.6;
+    background-color: var(--color-fondo-app);
+    color: var(--color-texto-principal);
+    min-height: 100vh;
+}
+
+/* ======================================================= */
+/* 2. COMPONENTES REUTILIZABLES (Header, Botones, Inputs, Modales) */
+/* ======================================================= */
+
+.page-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+.card { background-color: var(--color-fondo-card); border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); margin-bottom: 20px; }
+
+/* -- HEADER (Barra Superior) -- */
+.main-header, .nt-header { background-color: var(--color-principal); height: 64px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); gap: 20px; }
+.logo-text-header, .nt-header .brand { font-size: 25px; font-weight: 700; flex-shrink: 0; margin-right: 20px; color: white; text-decoration: none; }
+.main-nav-container { display: flex; align-items: center; justify-content: center; margin: 0 auto; gap: 20px; flex-grow: 1; }
+.main-menu { list-style: none; display: flex; padding: 0; margin: 0; gap: 15px; }
+.main-menu li a { color: white; text-decoration: none; padding: 0 10px; font-size: 0.9em; font-weight: 500; transition: opacity 0.2s; }
+.main-menu li a.active { font-weight: bold; border-bottom: 2px solid var(--color-fondo-card); }
+.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.search-input-header { padding: 5px 10px; border: none; border-radius: 4px; font-size: 0.9em; width: 200px; color: var(--color-texto-principal); }
+.btn-header-logout { background-color: white; color: var(--color-principal); padding: 5px 10px; border-radius: 4px; font-size: 0.9em; font-weight: bold; transition: background-color 0.3s, color 0.3s; }
+.profile-icon { font-size: 1.5em; line-height: 1; cursor: pointer; border: 2px solid white; border-radius: 50%; padding: 2px; }
+
+.logo-text-header img {
+  height: 32px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.main-menu li a:hover {
+  opacity: 0.8;
+}
+
+.profile-icon img {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  border: none;
+}
+
+/* -- BOTONES GLOBALES -- */
+.btn, .btn--primary, .btn--ghost, .btn--danger { padding: 12px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; transition: background-color .2s ease, color .2s ease, transform .06s ease, box-shadow .18s ease; }
+.btn:hover { filter: brightness(1.1); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
+.btn-primary, .btn--primary { background-color: var(--color-cta); color: #fff; border-color: var(--color-cta); }
+.btn-danger, .btn--danger, .btn-delete { background-color: var(--color-error); color: #fff; text-align: center; padding: 5px 12px; font-size: 0.9em; border-color: var(--color-error); } 
+.btn-edit { background-color: transparent; color: var(--color-principal); border: 1px solid var(--color-principal); padding: 5px 12px; font-size: 0.9em; margin-right: 5px; text-align: center } 
+
+/* -- INPUTS Y FORMULARIOS -- */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], select, input[type="search"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid var(--color-borde); border-radius: 4px; font-size: 1em; }
+.registro-form label { display: block; margin-bottom: 5px; font-weight: 500; }
+.form-group-inline { display: flex; gap: 15px; }
+
+/* -- MODALES (Ventanas Emergentes) -- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; display: none; }
+.modal-overlay:target { display: flex; }
+.modal-close-target { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: block; }
+.modal-content { background-color: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); position: relative; z-index: 20; }
+.p_subtle { color: var(--color-texto-secundario); font-size: 0.95em; margin-bottom: 20px; }
+.modal-large { max-width: 800px; }
+.practices-selection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.radio-option { border: 1px solid var(--color-borde); padding: 15px; border-radius: 4px; margin-bottom: 10px; cursor: pointer; }
+
+/* ======================================================= */
+/* 3. ESTILOS POR MÓDULO: REGISTRO DIARIO Y PRÁCTICAS */
+/* ======================================================= */
+
+.module-title { font-size: 1.8em; color: var(--color-texto-principal); margin-bottom: 20px; text-align: center; margin-top: 20px; }
+.registro-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: 10px; border-bottom: 1px solid var(--color-borde); text-align: left; }
+.data-table th { background-color: #F4F4F4; font-weight: 600; }
+.data-table tbody tr:hover { background-color: #F8F8F8; cursor: pointer; }
+.data-table .actions { white-space: nowrap; } /* Evita que los botones se rompan */
+.resumen-item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--color-borde); font-size: 0.95em; }
+
+/* ---- Prácticas Saludables (Listas y Selección) ---- */
+.practices-selection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.radio-option { border: 1px solid var(--color-borde); padding: 15px; border-radius: 4px; margin-bottom: 10px; cursor: pointer; }
+.radio-option:hover { background-color: #F8F8F8; }
+.radio-option input:checked + label { border-left: 5px solid var(--color-principal); padding-left: 10px; }
+
+/* ---- ESTILOS ADICIONALES PARA LAS OPCIONES INTERACTIVAS EN MODALES (Hover/Focus) ---- */
+
+/* Estilos de selección de prácticas (Añadir) */
+.card-selection {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+.card-selection:hover,
+.card-selection:focus-within { /* focus-within para capturar el foco del input */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-principal); /* Destaca la opción */
+}
+
+/* Estilos de selección de reemplazo (Radio Options) */
+.radio-option {
+    /* (Ya tiene estilos base) */
+    transition: background-color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+.radio-option:hover {
+    background-color: #F8F8F8; /* Sutil cambio de color al pasar el ratón */
+}
+/* Estilo cuando el radio está seleccionado (mantenemos el borde izquierdo de tu CSS original) */
+.radio-option input:checked + label {
+    border-left: 5px solid var(--color-principal);
+    padding-left: 10px;
+}
+
+.practicas-header { background-color: #EDE7F6; color: var(--color-texto-principal); border-radius: 8px 8px 0 0; padding: 15px 20px; font-weight: bold; }
+.practicas-list .list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid var(--color-borde); margin-bottom: -1px; background-color: var(--color-fondo-card); }
+
+/* -- ESTILOS ESPECÍFICOS DEL DASHBOARD -- */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px; 
+    gap: 30px; 
+    /* FIX CRÍTICO: Asegura que la cuadrícula se alinee a la izquierda (inicio) */
+    align-items: start; 
+}
+.dashboard-section-title { font-size: 1.5em; margin-bottom: 15px; color: var(--color-texto-principal); }
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.card--link {
+    text-align: center;
+    padding: 25px 15px;
+    height: 100%; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.card--link:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+.card__icon { font-size: 2.2em; color: var(--color-principal); margin-bottom: 10px; }
+.card-subtitle { color: var(--color-texto-secundario); font-size: 0.85em; }
+.dashboard-progress-card h3, .dashboard-practices-card h3 { font-size: 1.1em; border-bottom: 1px solid var(--color-borde); padding-bottom: 8px; margin-bottom: 12px; }
+
+/* -- FIX: FOOTER DE BAJA FIDELIDAD (Explorar | Compañía | Legal) -- */
+.nt-footer { margin-top: 40px; padding: 15px 0; background-color: var(--color-fondo-app); border-top: 1px solid var(--color-borde); }
+.footer__inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; color: var(--color-texto-secundario); }
+
+
+/* ======================================================= */
+/* 4. DISEÑO RESPONSIVE (SOLUCIÓN TOTAL) */
+/* ======================================================= */
+
+.mobile-nav-bar { display: none; }
+
+@media (max-width: 1024px) {
+    .dashboard-layout { grid-template-columns: 1fr; }
+    .dashboard-sidebar { order: -1; }
+}
+@media (max-width: 900px) {
+    .main-nav-container { display: none; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .registro-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    /* FIX CRÍTICO: OCULTAR EL HEADER DE DESKTOP COMPLETO */
+    .main-header { display: none !important; }
+    body { padding-bottom: 60px; }
+
+    /* Mostrar y Fijar la BARRA DE NAVEGACIÓN INFERIOR (SOLUCIÓN FINAL) */
+    .mobile-nav-bar {
+        position: fixed; bottom: 0; left: 0; width: 100%; background-color: white; 
+        border-top: 1px solid var(--color-borde); box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 900; padding: 5px 0; display: flex; 
+        justify-content: space-around; align-items: center;
+    }
+    .mobile-nav-bar a.mobile-nav-link { 
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        height: 100%; flex: 1; text-decoration: none; color: var(--color-texto-secundario); 
+        font-size: 0.75em; gap: 2px;
+    }
+
+    /* Responsive Dashboard Móvil */
+    .cards-grid { grid-template-columns: 1fr; }
+    .data-table .actions a { display: block; width: 100%; margin-bottom: 5px; }
+}
+
+    /* Apilamiento de gráficos en reportes */
+    .reports-grid { grid-template-columns: 1fr; }
+}
+
+/* Teléfono Móvil (Ajustes finos para pantallas pequeñas) */
+@media (max-width: 480px) {
+    /* Ajustes adicionales de padding en móvil */
+    .page-container { margin-top: 20px; padding: 0 10px; }
+}
+
+/* ===============================
+   VISOR DE PROGRESO (Metas)
+   =============================== */
+.goals-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* tabla (2) + visor (1) */
+  gap: 20px;
+}
+@media (max-width: 980px){ .goals-grid { grid-template-columns: 1fr; } }
+
+.progress--lg { height: 14px; background: var(--color-borde); border-radius: 999px; overflow: hidden; }
+.progress--lg > .bar { height: 100%; background: var(--color-cta); width: 0%; transition: width .35s ease; border-radius: 999px; }
+
+.viewer {
+  display: grid; gap: 12px;
+}
+.viewer__title { font-weight: 700; font-size: 1.05rem; color: var(--color-texto-principal); }
+.viewer__row  { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.viewer__pct  { font-variant-numeric: tabular-nums; min-width: 3ch; text-align: right; }
+.viewer input[type="range"] { width: 100%; }
+.viewer__hint { color: var(--color-texto-secundario); font-size: .9rem; }
+.viewer__actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+
+/* =======================================================
+   GOALS: barras de progreso + modales <dialog>
+   ======================================================= */
+
+/* Barras de progreso (tabla y tarjetas) */
+.progress {
+  height: 10px;
+  background: var(--color-borde);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__bar {
+  height: 100%;
+  background: var(--color-cta);
+  width: 0;             /* se anima desde 0 */
+  transition: width .6s ease;
+}
+
+/* Tarjeta resumen de progreso (vista rápida) */
+.goals-mini {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+.goal-chip {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fff;
+}
+.goal-chip__title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-texto-principal);
+}
+.goal-chip__row {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 10px;
+  font-size: .9rem;
+  color: var(--color-texto-secundario);
+}
+.goal-chip .progress { margin-top: 6px; }
+
+/* <dialog> nativo */
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog.modal {
+  border: 0;
+  padding: 0;
+  border-radius: 10px;
+}
+dialog.modal.card { padding: 20px; }
+
+
+/* ===== FIX: compatibilidad con <dialog> nativo ===== */
+dialog.modal {            /* solo afecta a tus <dialog class="modal"> */
+  /* Anula posiciones del bloque .modal usado para :target */
+  position: static;
+  inset: auto;
+  border: 0;
+  padding: 0;
+  border-radius: 10px;
+  background: var(--color-fondo-card);
+  /* Si en otro sitio .modal tiene display:none, aquí lo reactivamos al abrir */
+  display: none;
+}
+dialog.modal[open] {
+  display: block;         /* visible mientras tenga el atributo [open] */
+}
+dialog.modal.card {
+  padding: 20px;          /* conserva tu “card” */
+}
+dialog::backdrop {
+  background: rgba(0,0,0,.45);  /* oscurece el fondo como en las capturas */
+}
+
+
+/* ======================================================= */
+/* 5. PIE DE PÁGINA GLOBAL (Footer con redes sociales) */
+/* ======================================================= */
+
+.nt-footer {
+  margin-top: 40px;
+  padding: 15px 0;
+  background-color: var(--color-fondo-card);
+  border-top: 1px solid var(--color-borde);
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-texto-secundario);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.footer-social img:hover {
+  transform: scale(1.1);
+}
+
+/* ======================================================= */
+/* 6. FORMULARIOS DE AUTENTICACIÓN (Signup / Login) */
+/* ======================================================= */
+
+.form-wrap {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--color-fondo-card);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.form__title {
+  font-size: 1.8em;
+  margin-bottom: 25px;
+  text-align: center;
+  color: var(--color-texto-principal);
+}
+
+.form .field {
+  margin-bottom: 20px;
+}
+
+.form .field span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: var(--color-texto-principal);
+}
+
+.form input,
+.form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 1em;
+  background-color: #fff;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.form button[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1em;
+}
+
+/* ======================================================= */
+/* 7. UTILIDADES DE DISEÑO: CUADRÍCULAS Y DISTRIBUCIÓN */
+/* ======================================================= */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-span-2 {
+  grid-column: span 2;
+}

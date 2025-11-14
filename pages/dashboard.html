@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriTrack Web - Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css"> 
+</head>
+<body>
+  <script>
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html);
+      });
+  </script>
+
+  <main class="page-container dashboard-layout">
+    <div class="dashboard-main-content">
+      <h2 class="dashboard-section-title">Acceso Rápido</h2>
+
+      <div class="cards-grid">
+        <a href="registro_alimentos.html" class="card card--link card-link-item">
+          <span class="card__icon">🍽️</span>
+          <h4>Registrar comida</h4>
+          <p class="card-subtitle">Rastrea tus comidas diarias.</p>
+        </a>
+
+        <a href="nutritional-goals.html" class="card card--link card-link-item">
+          <span class="card__icon">🎯</span>
+          <h4>Metas</h4>
+          <p class="card-subtitle">Establece y monitorea tus objetivos nutricionales.</p>
+        </a>
+
+        <a href="practicas_saludables.html" class="card card--link card-link-item">
+          <span class="card__icon">🌱</span>
+          <h4>Prácticas saludables</h4>
+          <p class="card-subtitle">Registra tus hábitos de bienestar.</p>
+        </a>
+
+        <a href="regitro-y-analisis.html" class="card card--link card-link-item">
+          <span class="card__icon">📈</span>
+          <h4>Reportes</h4>
+          <p class="card-subtitle">Visualiza tu progreso con análisis detallados.</p>
+        </a>
+
+        <a href="#" class="card card--link card-link-item">
+          <span class="card__icon">📚</span>
+          <h4>Aprender</h4>
+          <p class="card-subtitle">Explora artículos y recetas sobre vida saludable.</p>
+        </a>
+
+        <a href="#" class="card card--link card-link-item">
+          <span class="card__icon">💬</span>
+          <h4>Foro</h4>
+          <p class="card-subtitle">Conéctate con la comunidad NutriTrack.</p>
+        </a>
+      </div>
+    </div>
+
+    <aside class="dashboard-sidebar">
+      <div class="card dashboard-progress-card">
+        <h3>Progreso de Metas</h3>
+
+        <div class="progress">
+          <div class="progress__row">
+            <span>Consumo de Agua</span>
+            <span>75% L</span>
+          </div>
+          <div class="progress__bar">
+            <span style="width: 75%;"></span>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress__row">
+            <span>Proteína Diaria</span>
+            <span>50% g</span>
+          </div>
+          <div class="progress__bar">
+            <span style="width: 50%;"></span>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress__row">
+            <span>Entrenamiento de Fuerza</span>
+            <span>80% sesiones</span>
+          </div>
+          <div class="progress__bar">
+            <span style="width: 80%;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card dashboard-practices-card">
+        <h3>Prácticas Recientes</h3>
+        <ul class="recent-practices-list">
+          <li>✔️ Completada la meditación diaria.</li>
+          <li>🏋️ Sesión de ejercicio cardiovascular realizada.</li>
+          <li>💧 Bebí 2 litros de agua.</li>
+          <li>🍞 Desayuno alto en proteínas registrado.</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <nav class="mobile-nav-bar">
+    <a href="dashboard.html" class="mobile-nav-link">
+      <span class="mobile-nav-icon">🏠</span>
+      <span class="mobile-nav-text">Inicio</span>
+    </a>
+    <a href="registro_diario.html" class="mobile-nav-link">
+      <span class="mobile-nav-icon">🍎</span>
+      <span class="mobile-nav-text">Registro</span>
+    </a>
+    <a href="nutritional-goals.html" class="mobile-nav-link">
+      <span class="mobile-nav-icon">🎯</span>
+      <span class="mobile-nav-text">Metas</span>
+    </a>
+    <a href="practicas_saludables.html" class="mobile-nav-link active">
+      <span class="mobile-nav-icon">🌱</span>
+      <span class="mobile-nav-text">Prácticas</span>
+    </a>
+    <a href="regitro-y-analisis.html" class="mobile-nav-link">
+      <span class="mobile-nav-icon">📊</span>
+      <span class="mobile-nav-text">Reportes</span>
+    </a>
+    <a href="account-settings.html" class="mobile-nav-link">
+      <span class="mobile-nav-icon">👤</span>
+      <span class="mobile-nav-text">Perfil</span>
+    </a>
+  </nav>
+
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
+</body>
+</html>
