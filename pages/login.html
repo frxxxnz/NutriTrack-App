@@ -35,13 +35,12 @@
     </div>
   </main>
 
-  <footer class="nt-footer">
-    <div class="container footer__inner">
-      <small>Legal</small>
-      <nav class="social">
-        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
-      </nav>
-    </div>
-  </footer>
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
 </body>
 </html>

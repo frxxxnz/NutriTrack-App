@@ -5,71 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Cuenta - NutriTrack Web</title>
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .label-icon {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: var(--color-texto-principal);
+    }
+    .label-icon img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head>
 <body>
-  <header class="main-header">
-    <div class="main-nav-container">
-      <a href="dashboard.html" class="logo-text-header">NutriTrackWeb</a>
-    </div>
-    <div class="header-actions">
-      <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
-    </div>
-  </header>
+  <script>
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html);
+      });
+  </script>
 
-  <main class="section">
+  <main class="page-container">
     <div class="form-wrap">
-      <form class="form card-soft">
+      <form class="form card-soft" action="dashboard.html">
         <h2 class="form__title">Editar Cuenta</h2>
 
         <div class="grid-2">
-          <div class="field"><span>Nombre</span><input type="text" value="Juan Pérez"></div>
-          <div class="field"><span>Correo</span><input type="email" value="juan.perez@ejemplo.com"></div>
-          <div class="field"><span>Contraseña</span><input type="password" value="********"></div>
-          <div class="field"><span>Confirmación de Contraseña</span><input type="password" value="********"></div>
-          <div class="field"><span>Nivel de actividad</span>
-            <select><option>Activo</option><option>Sedentario</option></select>
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Name.svg" alt="Nombre"> Nombre
+            </label>
+            <input type="text" value="Juan Pérez">
           </div>
-          <div class="field"><span>Tipo de dieta</span>
-            <select><option>Omnívora</option><option>Vegana</option></select>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Email.svg" alt="Correo"> Correo
+            </label>
+            <input type="email" value="juan.perez@ejemplo.com">
           </div>
-          <div class="field"><span>Unidad de medida</span>
-            <select><option>Kilogramos (Kg)</option><option>Libras (Lb)</option></select>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Password.svg" alt="Contraseña"> Contraseña
+            </label>
+            <input type="password" value="********">
           </div>
-          <div class="field"><span>Peso (Kg)</span><input type="number" value="70"></div>
-          <div class="field grid-span-2"><span>Estatura (Cm)</span><input type="number" value="175"></div>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Password.svg" alt="Confirmación"> Confirmación de Contraseña
+            </label>
+            <input type="password" value="********">
+          </div>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Activity.svg" alt="Actividad"> Nivel de actividad
+            </label>
+            <select>
+              <option>Activo</option>
+              <option>Sedentario</option>
+              <option>Muy activo</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Diet.svg" alt="Dieta"> Tipo de dieta
+            </label>
+            <select>
+              <option>Omnívora</option>
+              <option>Vegetariana</option>
+              <option>Vegana</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Ruler.svg" alt="Unidad"> Unidad de medida
+            </label>
+            <select>
+              <option>Kilogramos (Kg)</option>
+              <option>Libras (Lb)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="label-icon">
+              <img src="../assets/icons/Weight.svg" alt="Peso"> Peso
+            </label>
+            <input type="number" value="70">
+          </div>
+
+          <div class="field grid-span-2">
+            <label class="label-icon">
+              <img src="../assets/icons/Height.svg" alt="Estatura"> Estatura (Cm)
+            </label>
+            <input type="number" value="175">
+          </div>
         </div>
 
-        <div class="form__actions grid-span-2">
+        <div class="form__actions grid-span-2" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end;">
           <button type="submit" class="btn btn-primary">Guardar Cambios</button>
           <a href="dashboard.html" class="btn btn-ghost">Cancelar</a>
-          <a href="#delete-confirm" class="btn btn-danger">Eliminar Cuenta</a>
+          <button type="button" class="btn btn-danger" onclick="document.getElementById('modal-delete').showModal()">Eliminar Cuenta</button>
         </div>
       </form>
     </div>
   </main>
 
   <!-- Modal de confirmación -->
-  <div id="delete-confirm" class="modal">
-    <div class="modal__overlay"></div>
-    <div class="modal__content">
-      <button class="modal__close" onclick="window.location.hash='';">✖</button>
-      <div class="modal__icon">🗑️</div>
-      <h3>Confirmación de Eliminación</h3>
-      <p>¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
-      <div class="modal__actions">
-        <a href="#" class="btn btn-ghost" onclick="window.location.hash='';">Cancelar</a>
-        <a href="../index.html" class="btn btn-danger">Confirmar Eliminación</a>
-      </div>
+  <dialog id="modal-delete" class="modal card" style="max-width:420px;">
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="modal__close" onclick="document.getElementById('modal-delete').close()">✖</button>
     </div>
-  </div>
+    <h3 class="module-title" style="margin-top:0;">Confirmación de Eliminación</h3>
+    <p style="margin:8px 0 16px;">
+      ¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.
+    </p>
+    <div style="display:flex; gap:12px; justify-content:flex-end;">
+      <button class="btn" onclick="document.getElementById('modal-delete').close()">Cancelar</button>
+      <a href="../index.html" class="btn btn-danger">Confirmar Eliminación</a>
+    </div>
+  </dialog>
 
-  <footer class="nt-footer">
-    <div class="container footer__inner">
-      <small>Legal</small>
-      <nav class="social">
-        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
-      </nav>
-    </div>
-  </footer>
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
 </body>
 </html>
