@@ -1,0 +1,533 @@
+/* ======================================= */
+/* 1. Variables de la Guía de Estilo */
+/* ======================================= */
+:root {
+  /* Colores primarios */
+  --color-primary-main: #4CAF50;  /* Verde saludable */
+  --color-primary-dark: #43A047;  /* Verde intenso (CTA) */
+  --color-secondary-accent: #A5D6A7; /* Verde claro (Gráficos/Énfasis) */
+  
+  /* Colores de estado/feedback */
+  --color-success: #66BB6A;    /* Verde medio (Éxito/Completado) */
+  --color-warning: #FBC02D;    /* Amarillo (Advertencia) */
+  --color-error: #E53935;     /* Rojo (Error) */
+  
+  /* Colores neutros/fondo */
+  --color-bg-light: #EFE7DC;    /* Beige claro (Fondo principal) */
+  --color-text-main: #333333;   /* Negro grisáceo (Texto principal) */
+  --color-text-secondary: #757575; /* Gris medio (Texto secundario) */
+  --color-border: #E0E0E0;     /* Gris claro (Bordes y líneas) */
+  --color-header-footer: #FAFAFA; /* Blanco Niebla (Cálido) */
+
+  /* Tipografía */
+  --font-family-main: sans-serif; 
+}
+
+/* ======================================= */
+/* 2. Estilos Globales y Tipografía */
+/* ======================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-main);
+}
+
+/* FIX CRÍTICO: Asegura que el body ocupe el 100% de la ventana */
+html, body {
+  height: 100%; 
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  /* RUTA CORREGIDA: Usa barras diagonales */
+  background-image: url('../assets/img/landing_bck.jpg');
+  background-size: cover; 
+  background-attachment: scroll; 
+  background-position: center; 
+  background-color: var(--color-bg-light); 
+  
+  color: var(--color-text-main);
+  display: flex;
+  flex-direction: column;
+}
+
+.text-primary-dark { color: var(--color-primary-dark); }
+.text-text-secondary { color: var(--color-text-secondary); }
+
+
+/* ======================================= */
+/* 3. Estilos de Componentes Comunes (Botones/CTA) */
+/* ======================================= */
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none; 
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+.btn-lg {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+}
+
+.btn-primary-cta {
+  background-color: var(--color-primary-dark);
+  color: white;
+}
+.btn-primary-cta:hover {
+  background-color: #388e3c; 
+}
+
+.btn-secondary-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-primary-dark);
+  color: var(--color-primary-dark);
+  padding: 8px 18px; 
+}
+.btn-secondary-outline:hover {
+  background-color: var(--color-secondary-accent);
+}
+
+/* CORREGIDO: Botón Invertido (Para Header verde) - Ahora es blanco con texto blanco */
+.btn-secondary-outline-inverse {
+  background-color: white; 
+  border: 2px solid white; /* Borde blanco para mantener el contraste */
+  color: var(--color-primary-main); /* Usamos el color principal para el texto en el botón */
+  padding: 8px 18px;
+}
+.btn-secondary-outline-inverse:hover {
+  background-color: var(--color-bg-light); 
+}
+
+/* Botón de Peligro/Eliminar */
+.btn-danger {
+    background-color: var(--color-error); 
+    color: white; 
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #C12D2A;
+}
+
+
+/* ======================================= */
+/* 4. Layout del Landing Page (index.html) */
+/* ======================================= */
+
+.header-landing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+  padding: 20px 80px; 
+  background-color: var(--color-primary-main);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex; 
+  align-items: center;
+  text-decoration: none; 
+}
+
+.logo-icon {
+  height: 45px; 
+  width: auto;
+  margin-right: 8px; 
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white; 
+}
+
+.auth-nav a {
+  margin-left: 10px; 
+}
+
+.landing-hero-container {
+  flex-grow: 1; 
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  padding: 60px 80px; 
+}
+
+.hero-text-content {
+  flex: 1; 
+  max-width: 450px; 
+  padding-right: 20px; 
+  background-color: transparent; 
+  box-shadow: none; 
+  padding: 30px 0; 
+  border-radius: 8px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.hero-visual-content {
+  flex: 1; 
+  min-height: 500px; 
+  background-color: transparent;
+}
+
+
+.footer-landing {
+  width: 100%; 
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  padding: 20px 80px; 
+  background-color: var(--color-header-footer);
+}
+
+.footer-links a, .social-icons a {
+  margin-right: 15px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ======================================= */
+/* 5. Estilos de Formularios de Autenticación (se mantienen) */
+/* ======================================= */
+
+.auth-main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px; 
+}
+
+.form-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 450px; 
+}
+
+.card-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--color-text-main);
+  font-size: 0.95rem;
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: var(--color-primary-main);
+  outline: none;
+}
+
+.full-width-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.auth-help-links {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.auth-help-links a {
+  display: block;
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.auth-help-links a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ======================================= */
+/* Media Query para Responsive Design */
+/* ======================================= */
+@media (max-width: 992px) {
+  .header-landing, .footer-landing, .landing-hero-container {
+    padding: 20px;
+  }
+  
+  .landing-hero-container {
+    flex-direction: column; 
+  }
+
+  .hero-text-content {
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-visual-content {
+    width: 100%;
+    min-height: 300px;
+  }
+  
+  .auth-nav {
+    display: none; 
+  }
+  
+  .footer-landing {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+/* ======================================================= */
+/* 6. ESTILOS DE MÓDULO: EDITAR CUENTA (account-setting.html) */
+/* ======================================================= */
+
+/* ---- Contenedores y Layout General (Sobrescribe Form Card) ---- */
+.section { /* Contenedor principal de la página de edición */
+  padding: 40px; 
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-wrap { 
+  display: grid; 
+  place-items: center; 
+  width: 100%;
+}
+
+.form { 
+    /* El selector más genérico del formulario */
+  width: min(760px, 100%); 
+}
+
+/* FIX: Estilos de tarjeta con alta especificidad para esta página */
+.form-card {
+  max-width: 760px !important; 
+  background: white;
+  border-radius: 12px;
+  padding: 30px !important; 
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+
+.p_subtle { /* Estilo para el subtítulo debajo del título principal */
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* ---- Grid para el formulario de edición (2 columnas en desktop) ---- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.grid-span-2 { 
+  grid-column: span 2; 
+}
+
+/* ---- Estilo de Campos (Detalle) ---- */
+.field { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+  margin-bottom: 14px; 
+} 
+
+/* FIX: Ajustamos la altura de los inputs para evitar la ruptura del grid */
+.form-card .field input,
+.form-card .field select {
+  width: 100%;
+  padding: 12px;
+    height: 40px; 
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+    margin-bottom: 0; /* Anulamos el margen global del input */
+}
+
+/* Estilo para el Label con Icono */
+.field label.label-icon { 
+    font-weight: 600; 
+    color: var(--color-text-main);
+    font-size: 0.95rem; 
+    display: flex; 
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px; 
+}
+
+/* ---- Acciones del Formulario (Guardar / Cancelar / Eliminar) ---- */
+
+/* Contenedor principal de los botones de acción */
+.form__actions { 
+  grid-column: span 2; 
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+  justify-content: flex-end; /* Alinea Guardar/Cancelar a la derecha */
+  margin-top: 15px; 
+}
+
+/* FIX: Ajuste para el botón Eliminar Cuenta (alineación a la izquierda y reordenamiento) */
+.form__actions .btn-danger {
+  order: -1; /* Mueve Eliminar Cuenta al inicio */
+  margin-right: auto; /* Empuja los elementos restantes a la derecha */
+  margin-left: 0; 
+}
+
+/* FIX: Estilo específico para el botón Cancelar/Ghost */
+.form__actions .btn-secondary-outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+    padding: 10px 20px;
+}
+.form__actions .btn-secondary-outline:hover {
+  background: #f0f0f0;
+}
+
+/* ---- Modales de Confirmación (Basado en el patrón #hash) ---- */
+
+.modal-overlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: none; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1000; 
+}
+.modal-overlay:target { 
+  display: flex; 
+}
+.modal-content { 
+  background-color: white; 
+  padding: 30px; 
+  border-radius: 8px; 
+  max-width: 400px; 
+  width: 90%; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  position: relative; 
+  z-index: 20; 
+  text-align: center;
+}
+.modal-close-target { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: 10; 
+  display: block; 
+}
+.modal__actions { 
+  display: flex; 
+  justify-content: center; 
+  gap: 12px; 
+  margin-top: 20px; 
+}
+.modal__close { 
+  position: absolute; 
+  right: 10px; 
+  top: 8px; 
+  border: 0; 
+  background: transparent; 
+  font-size: 18px; 
+  cursor: pointer; 
+  color: #666;
+}
+.modal__icon {
+  font-size: 2.5rem;
+  color: var(--color-error); 
+  margin-bottom: 10px;
+}
+/* ======================================================= */
+/* 7. MEDIA QUERY PARA RESPONSIVE DESIGN */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* El grid de 2 columnas se convierte en 1 columna */
+  .grid-2 { 
+    grid-template-columns: 1fr; 
+    gap: 15px;
+  }
+  .grid-span-2 { 
+    grid-column: auto; 
+  }
+  .form.card-soft {
+    padding: 20px;
+  }
+  
+  /* Apilamiento de botones y Eliminar Cuenta */
+  .form__actions { 
+    flex-direction: column; 
+    justify-content: center;
+  }
+    /* Ordenamos los botones para que Eliminar Cuenta quede al final en móvil */
+  .form__actions .btn,
+  .form__actions .btn-ghost,
+  .form__actions .btn-danger {
+    width: 100%;
+    margin-right: 0 !important;
+    order: initial; /* Resetea el orden para que sigan el flujo natural */
+        /* Eliminamos el hack de orden en móvil */
+        order: initial !important;
+  }
+    .form__actions .btn-danger {
+        order: 10; /* Mueve el botón de peligro al final */
+    }
+}

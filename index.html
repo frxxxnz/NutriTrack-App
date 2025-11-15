@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NutriTrack Web</title>
-
-  <!-- Tu hoja de estilos global -->
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NB1H67DD56"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NB1H67DD56');
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack Web - Tu compañero personal para una vida más saludable</title>
+    <link rel="stylesheet" href="css/stylelp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-  <!-- Barra superior (verde) -->
-  <header class="main-header">
-    <div class="main-nav-container">
-      <a href="index.html" class="logo-text-header">NutriTrackWeb</a>
-      <!-- el menú principal no se muestra en la landing -->
-      <ul class="main-menu" style="display:none;"></ul>
-    </div>
+<body class="bg-light-beige">
+    <header class="header-landing">
+        <a href="index.html" class="logo-container">
+            <img src="assets/icons/LogoNutritrack.png" alt="Logo de NutriTrack Web" class="logo-icon">
+            <span class="logo-text">NutriTrack Web</span> 
+        </a>
+        <nav class="auth-nav">
+            <a href="pages/login.html" class="btn btn-secondary-outline-inverse">Iniciar sesión</a>
+            <a href="pages/register.html" class="btn btn-primary-cta">Crear cuenta</a>
+        </nav>
+    </header>
 
-    <div class="header-actions">
-      <a class="btn-header-logout" href="pages/login.html">Iniciar sesión</a>
-      <a class="btn btn-primary" href="pages/signup.html">Crear cuenta</a>
-    </div>
-  </header>
+    <main class="landing-hero-container">
+        <section class="hero-text-content">
+            <h1 class="hero-title text-primary-dark">Seguimiento de Alimentación Saludable</h1>
+            <p class="hero-subtitle text-text-secondary">
+                Tu compañero personal para mejorar tus dietas, formar hábitos saludables, y democratizar el acceso a la orientación nutricional básica.
+            </p>
+            <a href="pages/login.html" class="btn btn-primary-cta btn-lg">¡Empieza tu NutriTrack!</a>
+        </section>
 
-  <!-- Sección “hero” centrada -->
-  <main class="page-container" style="display:grid; place-items:center; min-height: calc(100vh - 64px - 64px);">
-    <section style="text-align:center; max-width:760px;">
-      <h1 style="font-size: clamp(28px, 5vw, 48px); margin-bottom:16px; color: var(--color-texto-principal);">
-        NutriTrack Web
-      </h1>
+        <section class="hero-visual-content">
+        </section>
+    </main>
 
-      <p style="color: var(--color-texto-principal); opacity:.9; margin:0 auto 28px; max-width:640px; line-height:1.7;">
-        Tu compañero personal para una vida más saludable. Registra tus comidas,
-        establece metas y sigue tus hábitos.
-      </p>
-
-      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a class="btn btn-ghost" href="pages/login.html">Iniciar sesión</a>
-        <a class="btn btn-primary" href="pages/signup.html">Crear cuenta</a>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    fetch('components/footer.html')
-      .then(res => res.text())
-      .then(html => {
-        document.body.insertAdjacentHTML('beforeend', html);
-      });
-  </script>
+    <footer class="footer-landing">
+        <div class="footer-links">
+            <a href="#">Explorar</a>
+            <a href="#">Compañía</a>
+            <a href="#">Legal</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="copyright-info">
+            <span class="text-secondary-dark">© 2025 NutriTrack Web. Todos los derechos reservados.</span>
+        </div>
+    </footer>
 </body>
 </html>

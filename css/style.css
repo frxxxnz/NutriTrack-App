@@ -214,7 +214,6 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 
     /* Apilamiento de gráficos en reportes */
     .reports-grid { grid-template-columns: 1fr; }
-}
 
 /* Teléfono Móvil (Ajustes finos para pantallas pequeñas) */
 @media (max-width: 480px) {
@@ -223,7 +222,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 }
 
 /* ===============================
-   VISOR DE PROGRESO (Metas)
+  VISOR DE PROGRESO (Metas)
    =============================== */
 .goals-grid {
   display: grid;
