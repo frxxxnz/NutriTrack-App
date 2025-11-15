@@ -9,38 +9,13 @@
 </head>
 <body>
 
-    <header class="main-header">
-
-        <div class="main-nav-container">
-
-            <a href="#" class="logo-text-header">NutriTrackWeb</a>
-            
-            <nav>
-                <ul class="main-menu">
-                    <li><a href="dashboard.html">Inicio</a></li>
-                    <li><a href="registro_alimentos.html">Registro diario</a></li>
-                    <li><a href="nutritional-goals.html">Metas</a></li>
-                    <li><a href="practicas_saludables.html">Prácticas</a></li>
-                    <li><a href="regitro-y-analisis.html" class="active">Reportes</a></li>
-                    <!-- <li><a href="#">Aprender</a></li>
-                    <li><a href="#">Foro</a></li> -->
-                </ul>
-            </nav>
-        </div>
-
-        <div class="header-actions">
-            <form class="search-bar">
-                <input type="search" class="search-input-header" placeholder="Buscar...">
-            </form>
-            <button class="btn-header-logout">Cerrar sesión</button>
-            <a href="#" class="avatar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12ZM12 14C8.68629 14 6 16.6863 6 20H18C18 16.6863 15.3137 14 12 14Z"/>
-                </svg>
-            </a>
-        </div>
-
-    </header>
+    <script>
+        fetch('../components/header.html')
+        .then(res => res.text())
+        .then(html => {
+            document.body.insertAdjacentHTML('afterbegin', html);
+          });
+    </script>
 
     <main class="page-container">
 
@@ -202,14 +177,6 @@
 
     </main>
 
-    <footer class="nt-footer">
-        <div class="container footer__inner">
-            <span>Explorar &nbsp; Compañía &nbsp; Legal</span>
-            <div class="social">
-                </div>
-        </div>
-    </footer>
-
     <nav class="mobile-nav">
         <a href="#" class="mobile-nav-link">
             <span class="mobile-nav-icon">🏠</span>
@@ -236,6 +203,14 @@
             <span class="mobile-nav-text">Perfil</span>
         </a>
     </nav>
+
+    <script>
+     fetch('../components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          document.body.insertAdjacentHTML('beforeend', html);
+        });
+    </script>
 
 </body>
 </html>

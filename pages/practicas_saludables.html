@@ -8,27 +8,13 @@
 </head>
 <body>
 
-    <header class="main-header">
-        <h1 class="logo-text-header">NutriTrack Web</h1>
-
-        <nav class="main-nav-container">
-            <ul class="main-menu">
-                <li><a href="dashboard.html">Inicio</a></li>
-                <li><a href="registro_diario.html">Registro diario</a></li>
-                <li><a href="nutritional-goals.html">Metas</a></li>
-                <li><a href="practicas_saludables.html" class="active">Prácticas</a></li>
-                <li><a href="regitro-y-analisis.html">Reportes</a></li>
-                <!-- <li><a href="#">Aprender</a></li>
-                <li><a href="foro.html">Foro</a></li> -->
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <input type="search" placeholder="Buscar..." class="search-input-header">
-            <button class="btn btn-header-logout">Cerrar sesión</button>
-            <div class="profile-icon">👤</div>
-        </div>
-    </header>
+    <script>
+        fetch('../components/header.html')
+          .then(res => res.text())
+          .then(html => {
+            document.body.insertAdjacentHTML('afterbegin', html);
+          });
+    </script>
 
     <main class="page-container">
         <h2 class="module-title">Prácticas Saludables</h2>
@@ -192,17 +178,25 @@
         </div>
     </div>
 
-    <div id="modal-eliminar-practica" class="modal-overlay">
-        <a href="practicas_saludables.html" class="modal-close-target"></a> 
+<div id="modal-eliminar-practica" class="modal-overlay">
+  <a href="practicas_saludables.html" class="modal-close-target"></a> 
 
-        <div class="modal-content modal-small" onclick="event.stopPropagation()">
-            <h3 class="modal-title">Eliminar Práctica</h3>
-            <p>¿Estás seguro que quieres eliminar la práctica **Beber 2 litros de agua**? Esta acción no se puede deshacer.</p>
-            <div class="modal-actions">
-                <a href="practicas_saludables.html" class="btn btn-secondary modal-close-btn">Cancelar</a>
-                <button type="button" class="btn btn-danger">Confirmar eliminación</button>
-            </div>
-        </div>
+  <div class="modal-content modal-small" onclick="event.stopPropagation()">
+    <h3 class="modal-title">Eliminar Práctica</h3>
+    <p>¿Estás seguro que quieres eliminar la práctica <strong>Beber 2 litros de agua</strong>? Esta acción no se puede deshacer.</p>
+    <div class="modal-actions">
+      <a href="practicas_saludables.html" class="btn btn-secondary modal-close-btn">Cancelar</a>
+      <button type="button" class="btn btn-danger">Confirmar eliminación</button>
     </div>
+  </div>
+</div>
+
+<script>
+  fetch('../components/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.body.insertAdjacentHTML('beforeend', html);
+    });
+</script>
 </body>
 </html>

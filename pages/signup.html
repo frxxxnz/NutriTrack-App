@@ -18,55 +18,61 @@
       <form class="form card-soft" action="registration-success.html">
         <h2 class="form__title">Crear Cuenta</h2>
 
-        <div class="field">
-          <span>Nombre</span>
-          <input type="text" placeholder="Tu nombre completo" required>
-        </div>
-        <div class="field">
-          <span>Correo</span>
-          <input type="email" placeholder="tu.correo@ejemplo.com" required>
-        </div>
-        <div class="field">
-          <span>Contraseña</span>
-          <input type="password" placeholder="********" required>
-        </div>
-        <div class="field">
-          <span>Confirmación de Contraseña</span>
-          <input type="password" placeholder="********" required>
-        </div>
+        <div class="grid-2">
+          <div class="field">
+            <span>Nombre</span>
+            <input type="text" placeholder="Tu nombre completo" required>
+          </div>
 
-        <div class="field">
-          <span>Nivel de actividad</span>
-          <select required>
-            <option value="">Selecciona tu nivel de actividad</option>
-            <option>Sedentario</option>
-            <option>Activo</option>
-            <option>Muy activo</option>
-          </select>
-        </div>
+          <div class="field">
+            <span>Correo</span>
+            <input type="email" placeholder="tu.correo@ejemplo.com" required>
+          </div>
 
-        <div class="field">
-          <span>Tipo de dieta</span>
-          <select required>
-            <option value="">Selecciona tu tipo de dieta</option>
-            <option>Omnívora</option>
-            <option>Vegetariana</option>
-            <option>Vegana</option>
-          </select>
-        </div>
+          <div class="field">
+            <span>Contraseña</span>
+            <input type="password" placeholder="********" required>
+          </div>
 
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+          <div class="field">
+            <span>Confirmación de Contraseña</span>
+            <input type="password" placeholder="********" required>
+          </div>
+
+          <div class="field">
+            <span>Nivel de actividad</span>
+            <select required>
+              <option value="">Selecciona tu nivel de actividad</option>
+              <option>Sedentario</option>
+              <option>Activo</option>
+              <option>Muy activo</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <span>Tipo de dieta</span>
+            <select required>
+              <option value="">Selecciona tu tipo de dieta</option>
+              <option>Omnívora</option>
+              <option>Vegetariana</option>
+              <option>Vegana</option>
+            </select>
+          </div>
+
+          <div class="grid-span-2" style="margin-top:10px;">
+            <button type="submit" class="btn btn-primary" style="width:100%;">Registrarse</button>
+          </div>
+        </div>
       </form>
     </div>
   </main>
 
-  <footer class="nt-footer">
-    <div class="container footer__inner">
-      <small>Legal</small>
-      <nav class="social">
-        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
-      </nav>
-    </div>
-  </footer>
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
 </body>
 </html>
