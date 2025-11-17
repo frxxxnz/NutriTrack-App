@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - NutriTrack Web</title>
-  <link rel="stylesheet" href="../css/style.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Iniciar Sesión - NutriTrack Web</title>
+ 
+  <link rel="stylesheet" href="../css/global.css">
+ <link rel="stylesheet" href="../css/autentication.css">
 </head>
 <body>
-  <header class="nt-header">
-    <div class="container">
-      <a href="../index.html" class="brand">NutriTrackWeb</a>
-    </div>
-  </header>
 
-  <main class="section">
-    <div class="form-wrap">
-      <form class="form form--narrow card-soft" action="dashboard.html">
-        <h2 class="form__title">Iniciar Sesión</h2>
-        <div class="field">
-          <span>Usuario/Correo</span>
-          <input type="email" placeholder="ej. usuario@ejemplo.com" required>
-        </div>
-        <div class="field">
-          <span>Contraseña</span>
-          <input type="password" placeholder="********" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        <div class="form__links">
-          <a href="#">¿Olvidaste tu contraseña?</a>
-          <span>·</span>
-          <a href="signup.html">Crear cuenta</a>
-        </div>
-      </form>
-    </div>
-  </main>
+  <header class="main-header">
+  <div class="page-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 20px; margin: 0 auto;">
+   <a href="../index.html" class="brand">NutriTrackWeb</a>
+  </div>
+ </header>
 
-  <footer class="nt-footer">
-    <div class="container footer__inner">
-      <small>Legal</small>
-      <nav class="social">
-        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
-      </nav>
-    </div>
-  </footer>
+  <main class="auth-container">
+ 
+    <form class="card auth-form" action="dashboard.html">
+   <h2 class="form__title">Iniciar Sesión</h2>
+   
+      <label for="email">Usuario/Correo</label>
+   <input type="email" id="email" placeholder="ej. usuario@ejemplo.com" required>
+   
+   <label for="password">Contraseña</label>
+   <input type="password" id="password" placeholder="********" required>
+   
+      <button type="submit" class="btn btn--primary btn--block">Entrar</button>
+   
+   <div class="form__links">
+    <a href="#">¿Olvidaste tu contraseña?</a>
+    <span>·</span>
+    <a href="signup.html" class="form__links-cc">Crear cuenta</a>
+   </div>
+  </form>
+ </main>
+
+  <script>
+  fetch('../components/footer.html')
+   .then(res => res.text())
+   .then(html => {
+    document.body.insertAdjacentHTML('beforeend', html);
+   });
+ </script>
 </body>
 </html>
