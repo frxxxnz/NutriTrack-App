@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aprender sobre Vida Saludable — NutriTrack Web</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <!-- Header modular -->
+  <script>
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html);
+      });
+  </script>
+
+  <main class="page-container">
+    <h1 class="module-title">Aprender sobre Vida Saludable</h1>
+    <p class="p_subtle" style="margin-bottom: 24px;">Artículos, consejos y recetas para una vida más nutritiva y equilibrada.</p>
+
+    <!-- Filtros y búsqueda -->
+    <div class="card" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:32px;">
+      <input type="search" class="search-input-header" placeholder="Buscar contenido..." style="flex:1; max-width:320px;" />
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-edit">Todos</button>
+        <button class="btn btn-edit">Artículo</button>
+        <button class="btn btn-edit">Consejo</button>
+        <button class="btn btn-edit">Receta</button>
+      </div>
+    </div>
+
+    <!-- Tarjetas de contenido en 3 columnas -->
+    <div class="grid-2 learn-grid">
+      <div class="card card-learn">
+        <img src="../assets/img/dietabalanceada.png" alt="Dieta balanceada" class="learn-img" />
+        <span class="learn-tag">Artículo</span>
+        <h3>Los beneficios de una dieta balanceada</h3>
+        <p>Descubre cómo una dieta equilibrada puede mejorar tu salud y bienestar general.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+
+      <div class="card card-learn">
+        <img src="../assets/img/hidratacion.png" alt="Hidratación" class="learn-img" />
+        <span class="learn-tag">Consejo</span>
+        <h3>Hidratación: clave para el rendimiento</h3>
+        <p>Aprende por qué mantenerse hidratado es esencial para tu energía y concentración.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+
+      <div class="card card-learn">
+        <img src="../assets/img/ensaladadequinoa.png" alt="Ensalada de quinoa" class="learn-img" />
+        <span class="learn-tag">Receta</span>
+        <h3>Ensalada de Quinoa con Vegetales</h3>
+        <p>Una receta nutritiva y fácil de preparar para tus comidas diarias.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+
+      <div class="card card-learn">
+        <img src="../assets/img/proteinavegetal.png" alt="Proteína vegetal" class="learn-img" />
+        <span class="learn-tag">Artículo</span>
+        <h3>El poder de las proteínas vegetales</h3>
+        <p>Explora los beneficios de incorporar proteínas vegetales en tu dieta.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+
+      <div class="card card-learn">
+        <img src="../assets/img/comidasemanal.png" alt="Planificación semanal" class="learn-img" />
+        <span class="learn-tag">Consejo</span>
+        <h3>Planificación de comidas para la semana</h3>
+        <p>Consejos prácticos para organizar tus comidas y ahorrar tiempo.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+
+      <div class="card card-learn">
+        <img src="../assets/img/batidoenergizante.png" alt="Batido verde" class="learn-img" />
+        <span class="learn-tag">Receta</span>
+        <h3>Batido Verde Energizante</h3>
+        <p>Una bebida saludable para comenzar el día con energía.</p>
+        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer modular -->
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
+</body>
+</html>
