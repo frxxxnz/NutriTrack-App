@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foro de la Comunidad — NutriTrack Web</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <!-- Header modular -->
+  <script>
+    fetch('../components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html);
+      });
+  </script>
+
+  <main class="page-container">
+    <div class="forum-header">
+      <h1 class="module-title">Foro de la Comunidad</h1>
+      <p class="p_subtle">Explora y participa en discusiones sobre nutrición y bienestar.</p>
+      <button id="btn-open-modal" class="btn btn-primary" style="margin-top: 16px;">+ Crear nuevo tema</button>
+    </div>
+
+    <div class="forum-grid">
+      <div class="card forum-topic">
+        <span class="badge badge-new">Nuevo</span>
+        <h3>Beneficios de una dieta mediterránea para el control del peso</h3>
+        <p>Descubre cómo esta dieta puede ayudarte a mantener un peso saludable.</p>
+        <small>Por: Laura Sánchez · 01/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>¿Cómo calcular tus macros para ganar masa muscular de forma efectiva?</h3>
+        <p>Aprende a ajustar tus macronutrientes según tus objetivos de entrenamiento.</p>
+        <small>Por: Carlos Méndez · 02/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>Recetas rápidas y saludables para cenas entre semana</h3>
+        <p>Opciones fáciles y nutritivas para terminar el día con energía.</p>
+        <small>Por: Ana Torres · 03/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>Mitos y verdades sobre los suplementos de proteínas</h3>
+        <p>Información basada en evidencia para tomar decisiones informadas.</p>
+        <small>Por: Fernando Ruiz · 04/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>Estrategias efectivas para mantener la motivación en tu plan nutricional</h3>
+        <p>Consejos prácticos para no abandonar tus metas de salud.</p>
+        <small>Por: Isabel Gómez · 05/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>Guía completa para principiantes en ayuno intermitente</h3>
+        <p>Conoce los beneficios y cómo empezar de manera segura.</p>
+        <small>Por: Javier Peña · 06/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>¿Qué comer antes y después de entrenar para optimizar tu rendimiento?</h3>
+        <p>Recomendaciones nutricionales para mejorar tus resultados.</p>
+        <small>Por: Patricia León · 07/10/2023</small>
+      </div>
+      <div class="card forum-topic">
+        <h3>El impacto del sueño en el metabolismo y la pérdida de peso</h3>
+        <p>La importancia de dormir bien para alcanzar tus objetivos.</p>
+        <small>Por: Sergio Vargas · 08/10/2023</small>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal para nuevo tema -->
+  <dialog id="modal-nuevo-tema" class="modal card">
+    <h2 class="form__title">Crear Nuevo Tema</h2>
+    <form class="form">
+      <div class="field">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" placeholder="Introduce el título de tu tema" required />
+      </div>
+      <div class="field">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" rows="4" placeholder="Escribe tu descripción aquí..." required></textarea>
+      </div>
+      <div style="display:flex; gap:12px; justify-content:flex-end;">
+        <button type="button" class="btn" id="btn-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Publicar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Footer modular -->
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+
+    // Modal logic
+    const modal = document.getElementById('modal-nuevo-tema');
+    document.getElementById('btn-open-modal').onclick = () => modal.showModal();
+    document.getElementById('btn-cancelar').onclick = () => modal.close();
+  </script>
+</body>
+</html>
