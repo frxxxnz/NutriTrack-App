@@ -1,0 +1,49 @@
+html, body {
+height: 100%;
+}
+
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+
+  min-height: calc(100vh - 64px - 50px); 
+  padding: 20px;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 700px; 
+}
+.account-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 20px;      
+}
+
+.grid-span-2 {
+  grid-column: 1 / -1; 
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px;
+  margin-top: 10px;
+}
+.card.auth-form {
+  padding: 20px;
+  margin: auto;
+}
+
+
+@media (max-width: 600px) {
+  .account-grid {
+    grid-template-columns: 1fr; 
+  }
+  .grid-span-2 {
+    grid-column: auto;
+  }
+}

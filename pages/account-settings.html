@@ -1,75 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar Cuenta - NutriTrack Web</title>
-  <link rel="stylesheet" href="../css/style.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Editar Cuenta - NutriTrack Web</title>
+ 
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/account.css">
 </head>
 <body>
+
   <header class="main-header">
-    <div class="main-nav-container">
-      <a href="dashboard.html" class="logo-text-header">NutriTrackWeb</a>
-    </div>
-    <div class="header-actions">
-      <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
-    </div>
-  </header>
-
-  <main class="section">
-    <div class="form-wrap">
-      <form class="form card-soft">
-        <h2 class="form__title">Editar Cuenta</h2>
-
-        <div class="grid-2">
-          <div class="field"><span>Nombre</span><input type="text" value="Juan Pérez"></div>
-          <div class="field"><span>Correo</span><input type="email" value="juan.perez@ejemplo.com"></div>
-          <div class="field"><span>Contraseña</span><input type="password" value="********"></div>
-          <div class="field"><span>Confirmación de Contraseña</span><input type="password" value="********"></div>
-          <div class="field"><span>Nivel de actividad</span>
-            <select><option>Activo</option><option>Sedentario</option></select>
-          </div>
-          <div class="field"><span>Tipo de dieta</span>
-            <select><option>Omnívora</option><option>Vegana</option></select>
-          </div>
-          <div class="field"><span>Unidad de medida</span>
-            <select><option>Kilogramos (Kg)</option><option>Libras (Lb)</option></select>
-          </div>
-          <div class="field"><span>Peso (Kg)</span><input type="number" value="70"></div>
-          <div class="field grid-span-2"><span>Estatura (Cm)</span><input type="number" value="175"></div>
-        </div>
-
-        <div class="form__actions grid-span-2">
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-          <a href="dashboard.html" class="btn btn-ghost">Cancelar</a>
-          <a href="#delete-confirm" class="btn btn-danger">Eliminar Cuenta</a>
-        </div>
-      </form>
-    </div>
-  </main>
-
-  <!-- Modal de confirmación -->
-  <div id="delete-confirm" class="modal">
-    <div class="modal__overlay"></div>
-    <div class="modal__content">
-      <button class="modal__close" onclick="window.location.hash='';">✖</button>
-      <div class="modal__icon">🗑️</div>
-      <h3>Confirmación de Eliminación</h3>
-      <p>¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
-      <div class="modal__actions">
-        <a href="#" class="btn btn-ghost" onclick="window.location.hash='';">Cancelar</a>
-        <a href="../index.html" class="btn btn-danger">Confirmar Eliminación</a>
-      </div>
-    </div>
+  <div class="main-nav-container page-container" style="padding: 0 20px;">
+   <a href="dashboard.html" class="brand">NutriTrackWeb</a>
+   
+      <ul class="main-menu" style="margin-left: 40px;">
+    <li><a href="dashboard.html">Inicio</a></li>
+    <li><a href="registro.html">Registro</a></li>
+    <li><a href="metas.html">Metas</a></li>
+   </ul>
+   
+   <div class="header-actions">
+    <a class="btn-header-logout" href="../index.html">Cerrar sesión</a>
+   </div>
   </div>
+ </header>
 
-  <footer class="nt-footer">
-    <div class="container footer__inner">
-      <small>Legal</small>
-      <nav class="social">
-        <a href="#">Fb</a><a href="#">Tw</a><a href="#">Ig</a><a href="#">In</a>
-      </nav>
+  <main class="page-container">
+ 
+    <form class="card">
+   <h2 class="form__title">Editar Cuenta</h2>
+
+      <div class="account-grid">
+    
+        <div>
+     <label for="nombre">Nombre</label>
+     <input type="text" id="nombre" value="Juan Pérez">
     </div>
-  </footer>
+    
+    <div>
+     <label for="correo">Correo</label>
+     <input type="email" id="correo" value="juan.perez@ejemplo.com">
+    </div>
+    
+    <div>
+     <label for="pass">Contraseña</label>
+     <input type="password" id="pass" value="********">
+    </div>
+    
+    <div>
+     <label for="pass_confirm">Confirmación de Contraseña</label>
+     <input type="password" id="pass_confirm" value="********">
+    </div>
+    
+    <div>
+     <label for="actividad">Nivel de actividad</label>
+     <select id="actividad"><option>Activo</option><option>Sedentario</option></select>
+    </div>
+    
+    <div>
+     <label for="dieta">Tipo de dieta</label>
+     <select id="dieta"><option>Omnívora</option><option>Vegana</option></select>
+    </div>
+    
+    <div>
+     <label for="unidad">Unidad de medida</label>
+     <select id="unidad"><option>Kilogramos (Kg)</option><option>Libras (Lb)</option></select>
+    </div>
+    
+    <div>
+     <label for="peso">Peso (Kg)</label>
+     <input type="number" id="peso" value="70">
+    </div>
+    
+    <div class="grid-span-2">
+     <label for="estatura">Estatura (Cm)</label>
+     <input type="number" id="estatura" value="175">
+    </div>
+
+            <div class="form-actions">
+     <button type="submit" class="btn btn--primary">Guardar Cambios</button>
+     <a href="dashboard.html" class="btn btn--secondary">Cancelar</a>
+     
+          <button type="button" class="btn btn--danger" id="open-delete-modal">Eliminar Cuenta</button>
+    </div>
+   </div>
+  </form>
+ </main>
+
+  <dialog id="delete-confirm-modal" class="modal">
+ <h3 class="form__title">Confirmación de Eliminación</h3>
+<p class="p_subtle">¿Estás seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+<div class="form-actions">
+<button type="button" class="btn--secondary" id="close-delete-modal">Cancelar</button>
+<a href="../index.html" class="btn btn--danger">Confirmar Eliminación</a>
+</div>
+ </dialog>
+ 
+  <script>
+  fetch('../components/footer.html')
+   .then(res => res.text())
+   .then(html => {
+    document.body.insertAdjacentHTML('beforeend', html);
+   });
+ </script>
+
+  <script>
+  // Espera a que el DOM esté cargado
+  document.addEventListener('DOMContentLoaded', () => {
+   
+   const modal = document.getElementById('delete-confirm-modal');
+   const openBtn = document.getElementById('open-delete-modal');
+   const closeBtn = document.getElementById('close-delete-modal');
+
+   // Abrir el modal
+   openBtn.addEventListener('click', () => {
+    modal.showModal(); // Función nativa de <dialog>
+   });
+
+   // Cerrar el modal
+   closeBtn.addEventListener('click', () => {
+    modal.close(); // Función nativa de <dialog>
+   });
+  });
+ </script>
+
 </body>
 </html>

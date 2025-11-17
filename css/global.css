@@ -1,0 +1,331 @@
+/* ======================================================= */
+/* ARCHIVO: global.css */
+/* CÁRGALO EN TODAS LAS PÁGINAS DE LA APLICACIÓN (app) */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 1. GUÍA DE ESTILOS: VARIABLES, RESET Y TIPOGRAFÍA */
+/* ======================================================= */
+
+:root {
+  /* COLORES PRINCIPALES Y DE MARCA */
+  --color-principal: #4CAF50;     /* Verde saludable (Marca) */
+  --color-secundario: #A5D6A7;    /* Verde claro (Énfasis/Gráficos) */
+  --color-cta: #43A047;       /* Verde intenso (Botones de Acción) */
+  --color-error: #E53935;      /* Rojo (Eliminar) */
+  --color-exito: #66BB6A;      /* Verde medio (Completado) */
+  --color-fondo-app: #EFE7DC;     /* Beige claro */
+  --color-texto-principal: #333333;  /* Negro grisáceo */
+  --color-texto-secundario: #757575; /* Gris medio */
+  --color-borde: #E0E0E0;      /* Gris claro */
+  --color-fondo-card: white;     /* Fondo de los contenedores de contenido */
+  --font-principal: 'Arial', sans-serif;
+}
+
+/* RESETEO BÁSICO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-principal);
+  line-height: 1.6;
+  background-color: var(--color-fondo-app);
+  color: var(--color-texto-principal);
+  min-height: 100vh;
+}
+
+/* ======================================================= */
+/* 2. LAYOUT Y COMPONENTES GLOBALES (REUTILIZABLES) */
+/* ======================================================= */
+
+/* --- Layout Básico --- */
+.page-container { 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+.card { 
+    background-color: var(--color-fondo-card); 
+    border-radius: 8px; 
+    padding: 20px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+    margin-bottom: 20px; 
+}
+
+.module-title { 
+    font-size: 1.8em; 
+    color: var(--color-texto-principal); 
+    margin-bottom: 20px; 
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+
+.main-header { 
+    background-color: var(--color-principal); 
+    height: 64px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 15px; 
+    color: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    gap: 20px; 
+}
+.main-header .brand { 
+    font-size: 25px; 
+    font-weight: 700; 
+    flex-shrink: 0; 
+    margin-right: 20px; 
+    color: white; 
+    text-decoration: none; 
+}
+.main-nav-container { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 auto; 
+    gap: 20px; 
+    flex-grow: 1; 
+}
+.main-menu { 
+    list-style: none; 
+    display: flex; 
+    padding: 0; 
+    margin: 0; 
+    gap: 15px; 
+}
+.main-menu li a { 
+    color: white; 
+    text-decoration: none; 
+    padding: 0 10px; 
+    font-size: 0.9em; 
+    font-weight: 500; 
+    transition: opacity 0.2s; 
+}
+.main-menu li a.active { 
+    font-weight: bold; 
+    border-bottom: 2px solid var(--color-fondo-card); 
+}
+.header-actions { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    flex-shrink: 0; 
+}
+.search-input-header { 
+    padding: 5px 10px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 0.9em; 
+    width: 200px; 
+    color: var(--color-texto-principal); 
+}
+.btn-header-logout { 
+    background-color: white; 
+    color: var(--color-principal); 
+    padding: 5px 10px; 
+    border-radius: 4px; 
+    font-size: 0.9em; 
+    font-weight: bold; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+.profile-icon { 
+    font-size: 1.5em; 
+    line-height: 1; 
+    cursor: pointer; 
+    border: 2px solid white; 
+    border-radius: 50%; 
+    padding: 2px; 
+}
+
+/* --- Footer (Pie de página de la App) --- */
+.nt-footer { 
+    margin-top: 40px; 
+    padding: 15px 0; 
+    background-color: var(--color-fondo-app); 
+    border-top: 1px solid var(--color-borde); 
+}
+.footer__inner { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    color: var(--color-texto-secundario); 
+}
+
+/* --- Botones Globales --- */
+.btn, .btn--primary, .btn--ghost, .btn--danger { 
+    padding: 12px 20px; 
+    border-radius: 4px; 
+    font-weight: bold; 
+    font-size: 0.9em;
+    cursor: pointer; 
+    text-decoration: none; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: .5rem; 
+    transition: background-color .2s ease, color .2s ease, transform .06s ease, box-shadow .18s ease; 
+}
+.btn--secondary{ 
+    background-color: white; 
+    color: var(--color-principal); 
+    border: 1px solid var(--color-principal); 
+}
+.btn:hover { 
+    filter: brightness(1.1); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+.btn-primary, .btn--primary { 
+    background-color: var(--color-cta); 
+    color: #fff; 
+    border: 1px solid var(--color-cta); 
+}
+.btn-danger, .btn--danger, .btn-delete { 
+    background-color: var(--color-error); 
+    color: #fff; 
+    text-align: center; 
+    padding: 12px 20px; 
+    font-size: 0.9em; 
+    border: 1px solid var(--color-error);
+} 
+.btn-edit { 
+    background-color: transparent; 
+    color: var(--color-principal); 
+    border: 1px solid var(--color-principal); 
+    padding: 5px 12px; 
+    font-size: 0.9em; 
+    margin-right: 5px; 
+    text-align: center;
+} 
+
+/* --- Inputs y Formularios --- */
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="number"], 
+input[type="date"], 
+select, 
+textarea,
+input[type="search"] { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid var(--color-borde); 
+    border-radius: 4px; 
+    font-size: 1em; 
+    background-color: #fff;
+}
+.registro-form label { 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: 500; 
+}
+.form-group-inline { 
+    display: flex; 
+    gap: 15px; 
+}
+
+/* --- Modales (usando <dialog>) --- */
+dialog.modal {
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+}
+dialog.modal.card { 
+    padding: 20px; 
+}
+dialog.modal-large { 
+    max-width: 800px; 
+}
+dialog::backdrop { 
+    background: rgba(0,0,0,.45); 
+}
+.p_subtle { 
+    color: var(--color-texto-secundario); 
+    font-size: 0.95em; 
+
+}
+
+
+
+
+/* ======================================================= */
+/* 3. RESPONSIVE GLOBAL (Móvil) */
+/* ======================================================= */
+
+/* --- Barra de Navegación Móvil (Oculta por defecto) --- */
+.mobile-nav-bar { 
+    display: none; 
+}
+
+/* --- Tablets (Verticales) --- */
+@media (max-width: 900px) {
+  /* Ocultar navegación de escritorio */
+    .main-nav-container { 
+        display: none; 
+    }
+}
+
+/* --- Teléfonos Móviles (Grandes) --- */
+@media (max-width: 600px) {
+  /* Ocultar header de escritorio y añadir padding inferior */
+  .main-header { 
+        display: none !important; 
+    }
+  body { 
+        padding-bottom: 60px; /* Espacio para la barra de navegación móvil */
+    }
+
+  /* Mostrar y Fijar la Barra de Navegación Móvil */
+  .mobile-nav-bar {
+    position: fixed; 
+        bottom: 0; 
+        left: 0; 
+        width: 100%; 
+        background-color: white; 
+    border-top: 1px solid var(--color-borde); 
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 900; 
+        padding: 5px 0; 
+        display: flex; 
+    justify-content: space-around; 
+        align-items: center;
+  }
+  .mobile-nav-bar a.mobile-nav-link { 
+    display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+    height: 100%; 
+        flex: 1; 
+        text-decoration: none; 
+        color: var(--color-texto-secundario); 
+    font-size: 0.75em; 
+        gap: 2px;
+  }
+    .mobile-nav-bar a.mobile-nav-link.active {
+        color: var(--color-principal);
+    }
+}
+
+/* --- Teléfonos Móviles (Pequeños) --- */
+@media (max-width: 480px) {
+  .page-container { 
+        margin-top: 20px; 
+        padding: 0 10px; 
+    }
+    .card {
+        padding: 15px;
+    }
+}

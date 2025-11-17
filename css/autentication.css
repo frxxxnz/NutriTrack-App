@@ -1,0 +1,57 @@
+/* ======================================================= */
+/* ARCHIVO: login.css */
+/* ======================================================= */
+
+html, body {
+ height: 100%;
+}
+
+.auth-container {
+ display: flex;
+ flex-direction: column;
+ justify-content: center; /* Centrado vertical */
+ align-items: center;  /* Centrado horizontal */
+ min-height: calc(100vh - 64px - 50px); /* Altura de header y footer */
+ padding: 20px;
+}
+
+.auth-form {
+ width: 100%;
+ max-width: 450px;
+}
+
+.form__title {
+ text-align: center;
+ font-size: 1.8em;
+ margin-bottom: 25px;
+ color: var(--color-texto-principal);
+}
+
+.form__links {
+ text-align: center;
+ margin-top: 20px;
+ font-size: 0.9em;
+}
+
+.form__links span {
+ margin: 0 5px;
+ color: var(--color-texto-secundario);
+}
+
+.form__links a {
+color: var(--color-principal);
+text-decoration: none;
+font-weight: 600;
+}
+
+.form__links a:hover {
+text-decoration: underline;
+}
+
+.btn--block {
+width: 100%;
+}
+
+.form__links .form__links-cc{
+color: darkgreen;
+}
