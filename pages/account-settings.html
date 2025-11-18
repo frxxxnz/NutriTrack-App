@@ -21,92 +21,89 @@
   </style>
 </head>
 <body>
-  <script>
-    fetch('../components/header.html')
-      .then(res => res.text())
-      .then(html => {
-        document.body.insertAdjacentHTML('afterbegin', html);
-      });
-  </script>
+  <script src="../js/header-loader.js"></script>
 
   <main class="page-container">
     <div class="form-wrap">
-      <form class="form card-soft" action="dashboard.html">
+      <form id="account-form" class="form card-soft">
         <h2 class="form__title">Editar Cuenta</h2>
 
         <div class="grid-2">
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="nombre">
               <img src="../assets/icons/Name.svg" alt="Nombre"> Nombre
             </label>
-            <input type="text" value="Juan Pérez">
+            <input type="text" id="nombre" required>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="email">
               <img src="../assets/icons/Email.svg" alt="Correo"> Correo
             </label>
-            <input type="email" value="juan.perez@ejemplo.com">
+            <input type="email" id="email" required>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="password">
               <img src="../assets/icons/Password.svg" alt="Contraseña"> Contraseña
             </label>
-            <input type="password" value="********">
+            <input type="password" id="password" required>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="confirmacion">
               <img src="../assets/icons/Password.svg" alt="Confirmación"> Confirmación de Contraseña
             </label>
-            <input type="password" value="********">
+            <input type="password" id="confirmacion" required>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="actividad">
               <img src="../assets/icons/Activity.svg" alt="Actividad"> Nivel de actividad
             </label>
-            <select>
-              <option>Activo</option>
-              <option>Sedentario</option>
-              <option>Muy activo</option>
+            <select id="actividad" required>
+              <option value="">Selecciona tu nivel de actividad</option>
+              <option value="Sedentario">Sedentario</option>
+              <option value="Activo">Activo</option>
+              <option value="Muy activo">Muy activo</option>
             </select>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="dieta">
               <img src="../assets/icons/Diet.svg" alt="Dieta"> Tipo de dieta
             </label>
-            <select>
-              <option>Omnívora</option>
-              <option>Vegetariana</option>
-              <option>Vegana</option>
+            <select id="dieta" required>
+              <option value="">Selecciona tu tipo de dieta</option>
+              <option value="Omnívora">Omnívora</option>
+              <option value="Vegetariana">Vegetariana</option>
+              <option value="Vegana">Vegana</option>
             </select>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="unidad">
               <img src="../assets/icons/Ruler.svg" alt="Unidad"> Unidad de medida
             </label>
-            <select>
-              <option>Kilogramos (Kg)</option>
-              <option>Libras (Lb)</option>
+            <select id="unidad" required>
+              <option value="">Selecciona unidad</option>
+              <option value="Kilogramos (Kg)">Kilogramos (Kg)</option>
+              <option value="Libras (Lb)">Libras (Lb)</option>
             </select>
           </div>
 
           <div class="field">
-            <label class="label-icon">
+            <label class="label-icon" for="peso">
               <img src="../assets/icons/Weight.svg" alt="Peso"> Peso
             </label>
-            <input type="number" value="70">
+            <input type="number" id="peso" min="0" required>
           </div>
 
           <div class="field grid-span-2">
-            <label class="label-icon">
+            <label class="label-icon" for="estatura">
               <img src="../assets/icons/Height.svg" alt="Estatura"> Estatura (Cm)
             </label>
-            <input type="number" value="175">
+            <input type="number" id="estatura" min="0" required>
           </div>
         </div>
 
@@ -130,9 +127,11 @@
     </p>
     <div style="display:flex; gap:12px; justify-content:flex-end;">
       <button class="btn" onclick="document.getElementById('modal-delete').close()">Cancelar</button>
-      <a href="../index.html" class="btn btn-danger">Confirmar Eliminación</a>
+      <button class="btn btn-danger" id="btn-eliminar-cuenta">Confirmar Eliminación</button>
     </div>
   </dialog>
+
+  <script src="../js/account-settings.js"></script>
 
   <script>
     fetch('../components/footer.html')

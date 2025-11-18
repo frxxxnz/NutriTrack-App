@@ -252,15 +252,17 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 /* Barras de progreso (tabla y tarjetas) */
 .progress {
   height: 10px;
-  background: var(--color-borde);
+  background-color: var(--color-borde);
   border-radius: 999px;
   overflow: hidden;
+  margin-bottom: 16px; /* Espaciado entre barras en el dashboard */
 }
+
 .progress__bar {
   height: 100%;
-  background: var(--color-cta);
-  width: 0;             /* se anima desde 0 */
-  transition: width .6s ease;
+  background-color: var(--color-cta);
+  border-radius: 999px;
+  transition: width 0.6s ease;
 }
 
 /* Tarjeta resumen de progreso (vista rápida) */
@@ -358,6 +360,8 @@ dialog::backdrop {
 .footer-social img:hover {
   transform: scale(1.1);
 }
+
+
 
 /* ======================================================= */
 /* 6. FORMULARIOS DE AUTENTICACIÓN (Signup / Login) */

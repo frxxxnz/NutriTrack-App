@@ -1,84 +1,153 @@
-// ---------- Utilidades ----------
-function animateBars(scope = document) {
-  // Lee el % de <small> o data-progress y anima .progress__bar
-  scope.querySelectorAll('tr').forEach(row => {
-    const bar = row.querySelector('.progress__bar');
-    if (!bar) return;
-    // intenta leer del pequeño % de la celda
-    const pctText = (row.querySelector('td small')?.textContent || '').trim();
-    let pct = parseInt(pctText.replace('%',''), 10);
-    if (Number.isNaN(pct)) {
-      // fallback a data-progress si lo usas
-      pct = parseInt(bar.dataset.progress || 0, 10);
+document.addEventListener('DOMContentLoaded', () => {
+  const usuario = JSON.parse(localStorage.getItem('usuarioActivo'));
+  if (!usuario) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  const metas = JSON.parse(localStorage.getItem('metasNutricionales')) || {};
+  metas[usuario.email] = metas[usuario.email] || [];
+  let metasUsuario = metas[usuario.email];
+  let metaEditandoIndex = null;
+  let metaEliminandoIndex = null;
+
+  const goalsTable = document.querySelector('#goals-table tbody');
+  const searchInput = document.getElementById('goal-search');
+  const filterButtons = document.querySelectorAll('[data-filter]');
+  const btnOpenNew = document.getElementById('btn-open-new');
+  const modalEdit = document.getElementById('modal-edit');
+  const modalTitle = document.getElementById('modal-title');
+  const formEdit = document.getElementById('form-edit');
+
+  const modalConfirmDelete = document.getElementById('modal-confirm-delete');
+  const textoConfirmacion = document.getElementById('texto-confirmacion');
+  const btnCancelarEliminar = document.getElementById('btn-cancelar-eliminar');
+  const btnConfirmarEliminar = document.getElementById('btn-confirmar-eliminar');
+
+  function renderMetas(filtro = 'all', texto = '') {
+    goalsTable.innerHTML = '';
+    const filtradas = metasUsuario.filter(meta => {
+      const coincideTexto = meta.nombre.toLowerCase().includes(texto.toLowerCase()) ||
+                            meta.frecuencia.toLowerCase().includes(texto.toLowerCase());
+      const coincideEstado = filtro === 'all' || meta.estado === filtro;
+      return coincideTexto && coincideEstado;
+    });
+
+    filtradas.forEach((meta, index) => {
+      const progreso = Math.min(100, ((meta.progreso / meta.valorObjetivo) * 100).toFixed(0));
+      const fila = document.createElement('tr');
+      fila.innerHTML = `
+        <td>${meta.nombre}</td>
+        <td>${meta.frecuencia}</td>
+        <td>
+          <div class="progress"><div class="progress__bar" style="width:${progreso}%"></div></div>
+          <small>${progreso}%</small>
+        </td>
+        <td class="actions">
+          <button class="btn btn-edit btn-sm" onclick="editarMeta(${index})">Editar</button>
+          <button class="btn btn-danger btn-sm" onclick="eliminarMeta(${index})">Eliminar</button>
+        </td>
+      `;
+      goalsTable.appendChild(fila);
+    });
+  }
+
+  window.editarMeta = index => {
+    metaEditandoIndex = index;
+    const meta = metasUsuario[index];
+    modalTitle.textContent = 'Editar Objetivo de Nutrición';
+
+    formEdit.nombre.value = meta.nombre;
+    formEdit.tipo.value = meta.tipo || '';
+    formEdit.valorObjetivo.value = meta.valorObjetivo || 1;
+    formEdit.unidad.value = meta.unidad || '';
+    formEdit.frecuencia.value = meta.frecuencia;
+    formEdit.inicio.value = meta.inicio || '';
+    formEdit.fin.value = meta.fin || '';
+    formEdit.progreso.value = meta.progreso || 0;
+
+    modalEdit.showModal();
+  };
+
+  window.eliminarMeta = index => {
+    metaEliminandoIndex = index;
+    const meta = metasUsuario[index];
+    textoConfirmacion.innerHTML = `¿Estás seguro que deseas eliminar el objetivo <strong>${meta.nombre}</strong>? Esta acción no se puede deshacer.`;
+    modalConfirmDelete.showModal();
+  };
+
+  btnCancelarEliminar.addEventListener('click', () => {
+    modalConfirmDelete.close();
+    metaEliminandoIndex = null;
+  });
+
+  btnConfirmarEliminar.addEventListener('click', () => {
+    if (metaEliminandoIndex !== null) {
+      metasUsuario.splice(metaEliminandoIndex, 1);
+      metas[usuario.email] = metasUsuario;
+      localStorage.setItem('metasNutricionales', JSON.stringify(metas));
+      metaEliminandoIndex = null;
+      modalConfirmDelete.close();
+      const filtroActivo = document.querySelector('[data-filter].active')?.getAttribute('data-filter') || 'all';
+      renderMetas(filtroActivo, searchInput.value);
     }
-    requestAnimationFrame(() => { bar.style.width = Math.max(0, Math.min(100, pct)) + '%'; });
   });
-}
 
-function buildMiniProgress() {
-  const mini = document.getElementById('goals-mini');
-  if (!mini) return;
-
-  mini.innerHTML = ''; // limpia
-  // Toma los datos de la tabla
-  document.querySelectorAll('#goals-table tbody tr').forEach(row => {
-    const name = row.cells?.[0]?.textContent?.trim() || 'Objetivo';
-    const pctText = (row.querySelector('td small')?.textContent || '0%').trim();
-    const pct = parseInt(pctText.replace('%',''), 10) || 0;
-
-    const card = document.createElement('div');
-    card.className = 'goal-chip';
-    card.innerHTML = `
-      <div class="goal-chip__title">${name}</div>
-      <div class="goal-chip__row">
-        <span>Progreso</span><strong>${pct}%</strong>
-      </div>
-      <div class="progress"><div class="progress__bar" style="width:${pct}%"></div></div>
-    `;
-    mini.appendChild(card);
+  btnOpenNew.addEventListener('click', () => {
+    metaEditandoIndex = null;
+    modalTitle.textContent = 'Agregar Nuevo Objetivo';
+    formEdit.reset();
+    modalEdit.showModal();
   });
-}
 
-// ---------- Modales <dialog> ----------
-const dlgNew  = document.getElementById('modal-new');
-const dlgEdit = document.getElementById('modal-edit');
-const dlgDel  = document.getElementById('modal-delete');
-
-document.getElementById('btn-open-new')?.addEventListener('click', () => dlgNew?.showModal());
-document.querySelector('[data-close-new]')?.addEventListener('click', () => dlgNew?.close());
-
-document.querySelectorAll('[data-edit]').forEach(btn => {
-  btn.addEventListener('click', () => dlgEdit?.showModal());
-});
-document.querySelector('[data-close-edit]')?.addEventListener('click', () => dlgEdit?.close());
-
-document.querySelectorAll('[data-delete]').forEach(btn => {
-  btn.addEventListener('click', () => dlgDel?.showModal());
-});
-document.querySelectorAll('[data-close-delete]').forEach(b => b.addEventListener('click', () => dlgDel?.close()));
-
-// ---------- Filtros (maqueta visual) ----------
-document.querySelectorAll('[data-filter]').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('[data-filter]').forEach(x => x.classList.remove('is-active'));
-    b.classList.add('is-active');
+  formEdit.querySelector('.btn').addEventListener('click', () => {
+    modalEdit.close();
+    metaEditandoIndex = null;
   });
-});
 
-// ---------- Búsqueda ----------
-const search = document.getElementById('goal-search');
-if (search) {
-  search.addEventListener('input', () => {
-    const term = search.value.toLowerCase();
-    document.querySelectorAll('#goals-table tbody tr').forEach(row => {
-      const text = row.innerText.toLowerCase();
-      row.style.display = text.includes(term) ? '' : 'none';
+  formEdit.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const nuevaMeta = {
+      nombre: formEdit.nombre.value.trim(),
+      tipo: formEdit.tipo.value,
+      valorObjetivo: parseFloat(formEdit.valorObjetivo.value),
+      unidad: formEdit.unidad.value,
+      frecuencia: formEdit.frecuencia.value,
+      inicio: formEdit.inicio.value,
+      fin: formEdit.fin.value,
+      progreso: parseFloat(formEdit.progreso.value),
+      estado: 'active'
+    };
+
+    if (metaEditandoIndex === null) {
+      metasUsuario.push(nuevaMeta);
+    } else {
+      metasUsuario[metaEditandoIndex] = nuevaMeta;
+    }
+
+    metas[usuario.email] = metasUsuario;
+    localStorage.setItem('metasNutricionales', JSON.stringify(metas));
+    modalEdit.close();
+
+    const filtroActivo = document.querySelector('[data-filter].active')?.getAttribute('data-filter') || 'all';
+    renderMetas(filtroActivo, searchInput.value);
+  });
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filtro = btn.getAttribute('data-filter');
+      renderMetas(filtro, searchInput.value);
     });
   });
-}
 
-// ---------- Inicialización ----------
-document.addEventListener('DOMContentLoaded', () => {
-  animateBars(document);
-  buildMiniProgress();
+  searchInput.addEventListener('input', () => {
+    const filtroActivo = document.querySelector('[data-filter].active')?.getAttribute('data-filter') || 'all';
+    renderMetas(filtroActivo, searchInput.value);
+  });
+
+  filterButtons[0].classList.add('active');
+  renderMetas();
 });

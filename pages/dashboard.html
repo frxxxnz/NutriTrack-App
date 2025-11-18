@@ -4,16 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NutriTrack Web - Dashboard</title>
-  <link rel="stylesheet" href="../css/style.css"> 
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <script>
-    fetch('../components/header.html')
-      .then(res => res.text())
-      .then(html => {
-        document.body.insertAdjacentHTML('afterbegin', html);
-      });
-  </script>
+  <script src="../js/header-loader.js"></script>
 
   <main class="page-container dashboard-layout">
     <div class="dashboard-main-content">
@@ -61,36 +55,7 @@
     <aside class="dashboard-sidebar">
       <div class="card dashboard-progress-card">
         <h3>Progreso de Metas</h3>
-
-        <div class="progress">
-          <div class="progress__row">
-            <span>Consumo de Agua</span>
-            <span>75% L</span>
-          </div>
-          <div class="progress__bar">
-            <span style="width: 75%;"></span>
-          </div>
-        </div>
-
-        <div class="progress">
-          <div class="progress__row">
-            <span>Proteína Diaria</span>
-            <span>50% g</span>
-          </div>
-          <div class="progress__bar">
-            <span style="width: 50%;"></span>
-          </div>
-        </div>
-
-        <div class="progress">
-          <div class="progress__row">
-            <span>Entrenamiento de Fuerza</span>
-            <span>80% sesiones</span>
-          </div>
-          <div class="progress__bar">
-            <span style="width: 80%;"></span>
-          </div>
-        </div>
+        <div id="dashboard-goals-progress"></div>
       </div>
 
       <div class="card dashboard-practices-card">
@@ -132,6 +97,7 @@
     </a>
   </nav>
 
+  <script src="../js/dashboard.js"></script>
   <script>
     fetch('../components/footer.html')
       .then(res => res.text())
