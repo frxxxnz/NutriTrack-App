@@ -5,15 +5,20 @@
  <meta name="viewport" content="width=device-width, initial-scale=1" />
  <title>Mis Metas — NutriTrack Web</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    dialog.modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: none;
+      padding: 0;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
-  <script>
-  fetch('../components/header.html')
-   .then(res => res.text())
-   .then(html => {
-    document.body.insertAdjacentHTML('afterbegin', html);
-   });
- </script>
+  <script src="../js/header-loader.js"></script>
 
  <main class="page-container">
   <h1 class="module-title">Mis Metas</h1>
@@ -32,246 +37,94 @@
   </div>
 
     <div class="card table-responsive">
-   <table class="data-table" id="goals-table">
-    <thead>
-     <tr>
-      <th>Nombre del Objetivo</th>
-      <th>Frecuencia</th>
-      <th style="width:240px;">Progreso</th>
-      <th class="actions">Acciones</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-      <td>Beber 2L de agua diariamente</td>
-      <td>Diario</td>
-      <td>
-       <div class="progress"><div class="progress__bar" style="width:75%"></div></div>
-       <small>75%</small>
-      </td>
-      <td class="actions">
-              <button class="btn btn-edit btn-sm" data-edit="1">Editar</button>
-              <button class="btn btn-danger btn-sm" data-delete="1">Eliminar</button>
-      </td>
-     </tr>
-     <tr>
-      <td>Hacer ejercicio 3 veces a la semana</td>
-      <td>Semanal</td>
-      <td>
-       <div class="progress"><div class="progress__bar" style="width:50%"></div></div>
-       <small>50%</small>
-      </td>
-      <td class="actions">
-       <button class="btn btn-edit btn-sm" data-edit="2">Editar</button>
-       <button class="btn btn-danger btn-sm" data-delete="2">Eliminar</button>
-      </td>
-     </tr>
-     <tr>
-      <td>Dormir al menos 8 horas al día</td>
-      <td>Diario</td>
-      <td>
-       <div class="progress"><div class="progress__bar" style="width:55%"></div></div>
-       <small>55%</small>
-      </td>
-      <td class="actions">
-       <button class="btn btn-edit btn-sm" data-edit="3">Editar</button>
-       <button class="btn btn-danger btn-sm" data-delete="3">Eliminar</button>
-      </td>
-     </tr>
-    </tbody>
-   </table>
-  </div>
- </main>
-
-  <dialog id="modal-new" class="modal card" style="max-width:680px;">
-  <h2 class="module-title" style="margin-top:0;">Agregar Nuevo Objetivo</h2>
-  <form id="form-new" class="registro-form">
-   <label>Nombre del Objetivo</label>
-   <input type="text" required placeholder="Ej. Beber 2L de agua diarios" />
-
-   <label>Descripción</label>
-   <textarea rows="4" placeholder="¿Por qué es importante? ¿Cómo lo lograrás?"></textarea>
-
-   <label>Frecuencia</label>
-   <select>
-    <option>Diaria</option>
-    <option>Semanal</option>
-    <option>Mensual</option>
-    <option>Largo Plazo</option>
-    <option>Fecha Exacta</option>
-   </select>
-
-   <div class="form-group-inline">
-    <div class="input-group">
-     <label>Fecha de Inicio</label>
-     <input type="date" />
+      <table class="data-table" id="goals-table">
+        <thead>
+          <tr>
+            <th>Nombre del Objetivo</th>
+            <th>Frecuencia</th>
+            <th style="width:240px;">Progreso</th>
+            <th class="actions">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se llenará dinámicamente -->
+        </tbody>
+      </table>
     </div>
-    <div class="input-group">
-     <label>Fecha de Fin</label>
-     <input type="date" />
-    </div>
-   </div>
+  </main>
 
-   <label><input type="checkbox" /> Objetivo recurrente</label>
-
-   <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
-        <button type="button" class="btn btn--ghost" data-close-new>Cancelar</button>
-    <button type="submit" class="btn btn-primary">Guardar Objetivo</button>
-   </div>
-  </form>
- </dialog>
-
+  <!-- MODAL: NUEVO / EDITAR META -->
   <dialog id="modal-edit" class="modal card" style="max-width:560px;">
-  <h2 class="module-title" style="margin-top:0;">Editar Objetivo de Nutrición</h2>
-  <form id="form-edit" class="registro-form">
-   <label>Nombre del Objetivo</label>
-   <input id="edit-name" type="text" value="Perder 5 kg" />
+    <h2 id="modal-title" class="module-title" style="margin-top:0;">Editar Objetivo de Nutrición</h2>
+    <form id="form-edit" class="registro-form">
+      <label for="edit-nombre">Nombre del Objetivo</label>
+      <input id="edit-nombre" name="nombre" type="text" required />
 
-   <label>Tipo de Objetivo</label>
-   <select>
-    <option>Pérdida de Peso</option>
-    <option>Hidratación</option>
-    <option>Alimentación</option>
-    <option>Actividad Física</option>
-    <option>Descanso</option>
-   </select>
+      <label for="edit-tipo">Tipo de Objetivo</label>
+      <select id="edit-tipo" name="tipo">
+        <option>Pérdida de Peso</option>
+        <option>Hidratación</option>
+        <option>Alimentación</option>
+        <option>Actividad Física</option>
+        <option>Descanso</option>
+      </select>
 
-   <div class="form-group-inline">
-    <div class="input-group">
-     <label>Valor Objetivo</label>
-     <input type="number" value="5" />
-    </div>
-    <div class="input-group">
-     <label>Unidad</label>
-     <select>
-      <option>kg</option><option>%</option><option>L</option><option>porciones</option>
-     </select>
-    </div>
-   </div>
+      <div class="form-group-inline">
+        <div class="input-group">
+          <label for="edit-valor">Valor Objetivo</label>
+          <input id="edit-valor" name="valorObjetivo" type="number" required />
+        </div>
+        <div class="input-group">
+          <label for="edit-unidad">Unidad</label>
+          <select id="edit-unidad" name="unidad">
+            <option>kg</option><option>%</option><option>L</option><option>porciones</option>
+          </select>
+        </div>
+      </div>
 
-   <label>Frecuencia</label>
-   <select>
-    <option>Semanal</option><option>Diaria</option><option>Mensual</option>
-   </select>
+      <label for="edit-frecuencia">Frecuencia</label>
+      <select id="edit-frecuencia" name="frecuencia">
+        <option>Diaria</option><option>Semanal</option><option>Mensual</option><option>Largo Plazo</option><option>Fecha Exacta</option>
+      </select>
 
-   <div class="form-group-inline">
-    <div class="input-group">
-     <label>Fecha de Inicio</label>
-     <input type="date" value="2024-06-01" />
-    </div>
-    <div class="input-group">
-     <label>Fecha Límite</label>
-     <input type="date" value="2024-08-31" />
-    </div>
-   </div>
+      <div class="form-group-inline">
+        <div class="input-group">
+          <label for="edit-inicio">Fecha de Inicio</label>
+          <input id="edit-inicio" name="inicio" type="date" />
+        </div>
+        <div class="input-group">
+          <label for="edit-fin">Fecha Límite</label>
+          <input id="edit-fin" name="fin" type="date" />
+        </div>
+      </div>
 
-   <label>Progreso Actual</label>
-   <input type="number" value="2" />
+      <label for="edit-progreso">Progreso Actual</label>
+      <input id="edit-progreso" name="progreso" type="number" value="0" />
 
-   <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
-        <button type="button" class="btn btn--ghost" data-close-edit>Cancelar</button>
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-   </div>
-  </form>
- </dialog>
-
-  <dialog id="modal-delete" class="modal card" style="max-width: 500px; margin:auto;">
-  <h3 class="module-title" style="margin-top:0; color: var(--color-error);">Confirmar Eliminación</h3>
-  <p class="p_subtle" style="text-align: center;">¿Estás seguro que deseas eliminar este objetivo? Esta acción no se puede deshacer.</p>
+      <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
+        <button type="button" class="btn">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </form>
+  </dialog>
   
-  <div style="display:flex; gap:12px; justify-content:center; margin-top:8px;">
-      <button type="button" class="btn btn--ghost" data-close-delete>Cancelar</button>
-   <button type="button" class="btn btn--danger" id="confirm-delete-btn">Confirmar</button>
-  </div>
- </dialog>
-<script>
-  // Espera a que todo el contenido HTML esté cargado
-  document.addEventListener('DOMContentLoaded', () => {
+  <dialog id="modal-confirm-delete" class="modal card" style="max-width:480px;">
+    <h2 class="module-title" style="margin-top:0;">Confirmar Eliminación</h2>
+    <p id="texto-confirmacion">¿Estás seguro que deseas eliminar este objetivo? Esta acción no se puede deshacer.</p>
+    <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:8px;">
+      <button type="button" class="btn" id="btn-cancelar-eliminar">Cancelar</button>
+      <button type="button" class="btn btn-danger" id="btn-confirmar-eliminar">Eliminar</button>
+    </div>
+  </dialog>
 
-   // --- 1. REFERENCIAS A LOS MODALES ---
-   const newModal = document.getElementById('modal-new');
-   const editModal = document.getElementById('modal-edit');
-   const deleteModal = document.getElementById('modal-delete');
-
-   // --- 2. REFERENCIAS A LOS BOTONES DE ABRIR ---
-   const addNewBtn = document.getElementById('btn-open-new');
-   const editButtons = document.querySelectorAll('.btn-edit[data-edit]');
-   const deleteButtons = document.querySelectorAll('.btn-danger[data-delete]');
-
-   // --- 3. REFERENCIAS A LOS BOTONES DE CERRAR ---
-   const cancelNewBtn = document.querySelector('[data-close-new]');
-   const cancelEditBtn = document.querySelector('[data-close-edit]');
-      
-      // --- ⬇️ INICIO DE LA CORRECCIÓN ⬇️ ---
-      
-   // Referencia al botón "Cancelar" del modal de eliminar
-   const cancelDeleteBtn = document.querySelector('[data-close-delete]');
-      // Referencia al botón "Confirmar" del modal de eliminar
-   const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
-
-      // --- ⬆️ FIN DE LA CORRECCIÓN ⬆️ ---
-
-
-   // --- 4. LÓGICA PARA ABRIR MODALES ---
-   
-   // Abrir modal "Agregar Nuevo"
-   if (addNewBtn && newModal) {
-    addNewBtn.addEventListener('click', () => {
-     newModal.showModal(); // Función nativa de <dialog>
-    });
-   }
-
-   // Abrir modal "Editar" para CADA botón de la tabla
-   if (editModal) {
-    editButtons.forEach(button => {
-     button.addEventListener('click', () => {
-      editModal.showModal();
-     });
-    });
-   }
-
-   // Abrir modal "Eliminar" para CADA botón de la tabla
-   if (deleteModal) {
-    deleteButtons.forEach(button => {
-     button.addEventListener('click', () => {
-      deleteModal.showModal();
-     });
-    });
-   }
-
-   // --- 5. LÓGICA PARA CERRAR MODALES ---
-   
-   if (cancelNewBtn && newModal) {
-    cancelNewBtn.addEventListener('click', () => newModal.close());
-   }
-   if (cancelEditBtn && editModal) {
-    cancelEditBtn.addEventListener('click', () => editModal.close());
-   }
-   
-      // --- ⬇️ INICIO DE LA CORRECCIÓN ⬇️ ---
-
-   // Lógica para "Cancelar" en el modal de eliminar
-   if (cancelDeleteBtn && deleteModal) {
-    cancelDeleteBtn.addEventListener('click', () => deleteModal.close());
-   }
-
-   // Lógica para "Confirmar" en el modal de eliminar
-   if (confirmDeleteBtn && deleteModal) {
-    confirmDeleteBtn.addEventListener('click', () => {
-     console.log('¡Objetivo eliminado! (Simulación)'); 
-     deleteModal.close(); 
-    });
-   }
-
-  });
- </script>
-   <script>
-  fetch('../components/footer.html')
-   .then(res => res.text())
-   .then(html => {
-    document.body.insertAdjacentHTML('beforeend', html);
-   });
- </script>
+  <script src="../js/nutritional-goals.js"></script>
+  <script>
+    fetch('../components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      });
+  </script>
 </body>
 <nav class="mobile-nav-bar">
         <a href="dashboard.html" class="mobile-nav-link">

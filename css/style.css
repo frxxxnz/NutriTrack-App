@@ -313,122 +313,24 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 /* 3.B ESTILOS PARA PÁGINA DE PRÁCTICAS SALUDABLES */
 /* ======================================================= */
 
-/* --- Maquetación de la Lista de Prácticas --- */
-.practicas-header {
- background-color: #f8f9fa; /* Un fondo sutil para el header */
- color: var(--color-texto-principal);
- border-radius: 8px 8px 0 0;
- padding: 15px 20px;
- font-weight: 600;
- border-bottom: 1px solid var(--color-borde);
+/* =======================================================
+   GOALS: barras de progreso + modales <dialog>
+   ======================================================= */
+
+/* Barras de progreso (tabla y tarjetas) */
+.progress {
+  height: 10px;
+  background-color: var(--color-borde);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px; /* Espaciado entre barras en el dashboard */
 }
 
-.practicas-list {
- padding: 0;
- margin: 0;
- list-style: none;
-}
-
-.list-item {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 15px 20px;
- border-bottom: 1px solid var(--color-borde);
-}
-.list-item:last-child {
- border-bottom: none;
-}
-.list-item label {
- display: flex;
- align-items: center;
- gap: 12px;
- cursor: pointer;
- font-weight: 500;
-}
-.list-item-actions {
- display: flex;
- gap: 8px;
-}
-.list-item.add-action {
- justify-content: center;
-}
-.list-item.add-action .btn {
- width: auto;
- padding: 8px 30px; /* Botón más pequeño */
-}
-
-/* --- Botones de Filtro (Semanal, Mensual, Anual) --- */
-.time-filters {
- display: flex;
- gap: 8px;
- margin-bottom: 20px;
-}
-
-/* Botón secundario (no seleccionado) */
-.btn-secondary {
- background-color: transparent;
- color: var(--color-texto-secundario);
- border: 1px solid var(--color-borde);
- font-weight: normal;
- padding: 5px 12px; /* Hacemos que coincida con .btn-edit */
- font-size: 0.9em;
-}
-.btn-secondary:hover {
- background-color: #f5f5f5;
- color: var(--color-texto-principal);
- border-color: #ccc;
-}
-
-/* Botones más pequeños para los filtros */
-.btn-small {
- padding: 5px 12px;
- font-size: 0.9em;
-}
-
-/* --- Botones de la Lista (Reemplazar) --- */
-
-/* 🔑 CLASE QUE FALTABA: .btn-reemplazar */
-.btn-reemplazar {
- background-color: transparent;
- color: var(--color-principal);
- border: 1px solid var(--color-principal);
- padding: 5px 12px;
- font-size: 0.9em;
- margin-right: 5px;
- text-align: center;
-}
-.btn-reemplazar:hover {
- background-color: #f5f5f5;
-}
-
-.btn secondary .modal-c
-/* --- Estilos para los Modales de esta página --- */
-.modal-title {
- font-size: 1.8em;
- margin-bottom: 10px;
- text-align: center;
- color: var(--color-texto-principal);
-}
-.modal-actions {
- display: flex;
- justify-content: flex-end;
- gap: 12px;
- margin-top: 25px;
-}
-
-/* Tarjetas de selección (Modal Añadir) */
-.practices-selection-grid {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
- gap: 15px;
- margin-bottom: 20px;
-}
-.card-selection {
- transition: transform 0.15s ease, box-shadow 0.15s ease;
- cursor: pointer;
- border: 1px solid var(--color-borde);
- border-radius: 8px; /* Añadido para consistencia */
+.progress__bar {
+  height: 100%;
+  background-color: var(--color-cta);
+  border-radius: 999px;
+  transition: width 0.6s ease;
 }
 .card-selection:hover {
  transform: translateY(-2px);
@@ -490,6 +392,8 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
  border-radius: 4px;
  border: 1px solid var(--color-borde);
 }
+
+
 
 /* ======================================================= */
 /* 3.C ESTILOS PARA PÁGINA DE REPORTES Y ANÁLISIS */
