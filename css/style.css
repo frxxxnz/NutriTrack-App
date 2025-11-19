@@ -297,31 +297,9 @@ dialog.modal {
   border: 0;
   padding: 0;
   border-radius: 10px;
+  margin: auto;
 }
 dialog.modal.card { padding: 20px; }
-
-
-/* ===== FIX: compatibilidad con <dialog> nativo ===== */
-dialog.modal {            /* solo afecta a tus <dialog class="modal"> */
-  /* Anula posiciones del bloque .modal usado para :target */
-  position: static;
-  inset: auto;
-  border: 0;
-  padding: 0;
-  border-radius: 10px;
-  background: var(--color-fondo-card);
-  /* Si en otro sitio .modal tiene display:none, aquí lo reactivamos al abrir */
-  display: none;
-}
-dialog.modal[open] {
-  display: block;         /* visible mientras tenga el atributo [open] */
-}
-dialog.modal.card {
-  padding: 20px;          /* conserva tu “card” */
-}
-dialog::backdrop {
-  background: rgba(0,0,0,.45);  /* oscurece el fondo como en las capturas */
-}
 
 
 /* ======================================================= */
@@ -536,4 +514,53 @@ dialog::backdrop {
   font-size: 0.9rem;
   color: var(--color-texto-secundario, #555);
   margin-bottom: 12px;
+}
+
+/* ======================================================= */
+/* 10. FIX FINAL: CENTRADO PERFECTO DE MODALES <DIALOG> */
+/* ======================================================= */
+
+dialog.modal {
+  /* 1. Posicionamiento Fijo (Flota sobre todo) */
+  position: fixed; 
+  
+  /* 2. Truco de Centrado Absoluto Moderno */
+  inset: 0;       /* Top, Right, Bottom, Left = 0 */
+  margin: auto;   /* El navegador calcula el centro exacto */
+
+  /* 3. Dimensiones */
+  width: 90%;              /* Responsivo en móviles */
+  max-width: 500px;        /* Ancho máximo en PC */
+  height: fit-content;     /* Se ajusta al contenido (texto) */
+  max-height: 85vh;        /* Si la lista es larga, no se sale de la pantalla */
+  overflow-y: auto;        /* Scroll interno si es necesario */
+
+  /* 4. Estética Visual */
+  background-color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Sombra profunda para efecto 'pop-up' */
+  z-index: 1000;
+  
+  /* 5. Animación de Entrada Suave */
+  animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Fondo oscuro detrás del modal */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
+  backdrop-filter: blur(2px);           /* Efecto borroso elegante */
+}
+
+/* Definición de la animación */
+@keyframes popIn {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.9); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
 }

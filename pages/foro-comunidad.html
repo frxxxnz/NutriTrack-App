@@ -7,15 +7,20 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <!-- Header modular -->
   <script src="../js/header-loader.js"></script>
-
 
   <main class="page-container">
     <div class="forum-header">
       <h1 class="module-title">Foro de la Comunidad</h1>
       <p class="p_subtle">Explora y participa en discusiones sobre nutrición y bienestar.</p>
-      <button id="btn-open-modal" class="btn btn-primary" style="margin-top: 16px;">+ Crear nuevo tema</button>
+      
+      <div style="display: flex; gap: 15px; justify-content: center; margin-top: 16px;">
+          <button id="btn-open-modal" class="btn btn-primary">+ Crear nuevo tema</button>
+          
+          <button id="btn-manage-topics" class="btn btn--ghost" style="border: 1px solid var(--color-principal); color: var(--color-principal); background: transparent;">
+              ⚙️ Administrar mis temas
+          </button>
+      </div>
     </div>
 
     <div class="forum-grid">
@@ -63,10 +68,9 @@
     </div>
   </main>
 
-  <!-- Modal para nuevo tema -->
   <dialog id="modal-nuevo-tema" class="modal card">
     <h2 class="form__title">Crear Nuevo Tema</h2>
-    <form class="form">
+    <form class="form" id="forum-form">
       <div class="field">
         <label for="titulo">Título</label>
         <input type="text" id="titulo" placeholder="Introduce el título de tu tema" required />
@@ -82,52 +86,75 @@
     </form>
   </dialog>
 
-  <!-- Footer modular -->
+  <dialog id="modal-administrar" class="modal card">
+    <h2 class="form__title">Mis Temas Publicados</h2>
+    <p class="p_subtle" style="text-align:center; margin-bottom: 15px;">
+        Aquí puedes eliminar los temas que has creado.
+    </p>
+    
+    <div id="user-topics-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px; border-top: 1px solid #eee;">
+        </div>
+
+    <div style="display:flex; justify-content:flex-end;">
+      <button type="button" class="btn" id="btn-close-manage">Cerrar</button>
+    </div>
+  </dialog>
+
+  <dialog id="modal-administrar" class="modal card">
+    <h2 class="form__title" style="font-size:1.5rem;">Mis Temas</h2>
+    <p class="p_subtle" style="text-align:center;">Gestión de tus publicaciones</p>
+    
+    <div id="user-topics-list" style="max-height: 300px; overflow-y: auto; margin: 15px 0;">
+        </div>
+
+    <div style="display:flex; justify-content:flex-end; border-top:1px solid #eee; padding-top:15px;">
+      <button type="button" class="btn" id="btn-close-manage">Cerrar</button>
+    </div>
+  </dialog>
+
   <script>
     fetch('../components/footer.html')
       .then(res => res.text())
       .then(html => {
         document.body.insertAdjacentHTML('beforeend', html);
       });
-
-    // Modal logic
-    const modal = document.getElementById('modal-nuevo-tema');
-    document.getElementById('btn-open-modal').onclick = () => modal.showModal();
-    document.getElementById('btn-cancelar').onclick = () => modal.close();
   </script>
+
+  <script src="../js/forum.js"></script>
+
+  <nav class="mobile-nav-bar">
+    <a href="dashboard.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">🏠</span>
+        <span class="mobile-nav-text">Inicio</span>
+    </a>
+    <a href="registro_alimentos.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">➕</span>
+        <span class="mobile-nav-text">Registro</span>
+    </a>
+    <a href="nutritional-goals.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">❤️</span>
+        <span class="mobile-nav-text">Metas</span>
+    </a>
+    <a href="practicas_saludables.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">🌱</span>
+        <span class="mobile-nav-text">Prácticas</span>
+    </a>
+    <a href="regitro-y-analisis.html" class="mobile-nav-link active">
+        <span class="mobile-nav-icon">📊</span>
+        <span class="mobile-nav-text">Reportes</span>
+    </a>
+    <a href="aprender-vida-saludable.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">📚</span>
+        <span class="mobile-nav-text">Aprender</span>
+    </a>
+    <a href="foro-comunidad.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">📫</span>
+        <span class="mobile-nav-text">Foro</span>
+    </a>
+    <a href="account-settings.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">👤</span>
+        <span class="mobile-nav-text">Perfil</span>
+    </a>
+  </nav>
 </body>
-<nav class="mobile-nav-bar">
-        <a href="dashboard.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">🏠</span>
-            <span class="mobile-nav-text">Inicio</span>
-        </a>
-        <a href="registro_alimentos.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">➕</span>
-            <span class="mobile-nav-text">Registro</span>
-        </a>
-        <a href="nutritional-goals.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">❤️</span>
-            <span class="mobile-nav-text">Metas</span>
-        </a>
-        <a href="practicas_saludables.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">🌱</span>
-            <span class="mobile-nav-text">Prácticas</span>
-        </a>
-        <a href="regitro-y-analisis.html" class="mobile-nav-link active">
-            <span class="mobile-nav-icon">📊</span>
-            <span class="mobile-nav-text">Reportes</span>
-        </a>
-        <a href="aprender-vida-saludable.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">📚</span>
-            <span class="mobile-nav-text">Aprender</span>
-        </a>
-        <a href="foro-comunidad.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">📫</span>
-            <span class="mobile-nav-text">Foro</span>
-        </a>
-        <a href="account-settings.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">👤</span>
-            <span class="mobile-nav-text">Perfil</span>
-        </a>
-    </nav>
 </html>
