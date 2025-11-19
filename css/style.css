@@ -88,6 +88,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 .p_subtle { color: var(--color-texto-secundario); font-size: 0.95em; margin-bottom: 20px; }
 .modal-large { max-width: 800px; }
 .practices-selection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.modal-content .practices-selection-grid {max-height: 400px; overflow-y: auto; padding-right: 5px; scroll-behavior: smooth;}
 .radio-option { border: 1px solid var(--color-borde); padding: 15px; border-radius: 4px; margin-bottom: 10px; cursor: pointer; }
 
 /* ======================================================= */
