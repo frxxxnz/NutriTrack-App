@@ -29,15 +29,28 @@ body {
     line-height: 1.6;
     background-color: var(--color-fondo-app);
     color: var(--color-texto-principal);
-    min-height: 100vh;
+
+    /* --- FIX STICKY FOOTER SEGURO --- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupar toda la altura */
+    width: 100%;       /* Forzar ancho completo */
+    margin: 0;         /* Eliminar márgenes por defecto */
 }
 
 /* ======================================================= */
 /* 2. COMPONENTES REUTILIZABLES (Header, Botones, Inputs, Modales) */
 /* ======================================================= */
 
-.page-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-.card { background-color: var(--color-fondo-card); border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); margin-bottom: 20px; }
+.page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    
+    /* --- AGREGAR ESTAS 2 LÍNEAS --- */
+    width: 100%; /* Asegura que respete el max-width centrado */
+    flex: 1;     /* Empuja el footer hacia abajo */
+}.card { background-color: var(--color-fondo-card); border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); margin-bottom: 20px; }
 
 /* -- HEADER (Barra Superior) -- */
 .main-header, .nt-header { background-color: var(--color-principal); height: 64px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); gap: 20px; }
@@ -170,7 +183,13 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 .dashboard-progress-card h3, .dashboard-practices-card h3 { font-size: 1.1em; border-bottom: 1px solid var(--color-borde); padding-bottom: 8px; margin-bottom: 12px; }
 
 /* -- FIX: FOOTER DE BAJA FIDELIDAD (Explorar | Compañía | Legal) -- */
-.nt-footer { margin-top: 40px; padding: 15px 0; background-color: var(--color-fondo-app); border-top: 1px solid var(--color-borde); }
+.nt-footer {
+    /* margin-top: 40px;  <-- CAMBIA ESTO */
+    margin-top: auto;  /* <-- POR ESTO (Empuja el footer al final del espacio flex) */
+    padding: 15px 0;
+    background-color: var(--color-fondo-card);
+    border-top: 1px solid var(--color-borde);
+}
 .footer__inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; color: var(--color-texto-secundario); }
 
 
@@ -183,6 +202,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 @media (max-width: 1024px) {
     .dashboard-layout { grid-template-columns: 1fr; }
     .dashboard-sidebar { order: -1; }
+    
 }
 @media (max-width: 900px) {
     .main-nav-container { display: none; }
@@ -192,8 +212,9 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 
 @media (max-width: 600px) {
     /* FIX CRÍTICO: OCULTAR EL HEADER DE DESKTOP COMPLETO */
+    .nt-footer{display:none;}
     .main-header { display: none !important; }
-    body { padding-bottom: 60px; }
+    body { padding-bottom: 70px; }
 
     /* Mostrar y Fijar la BARRA DE NAVEGACIÓN INFERIOR (SOLUCIÓN FINAL) */
     .mobile-nav-bar {
