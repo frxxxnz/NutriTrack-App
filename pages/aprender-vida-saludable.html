@@ -7,33 +7,40 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <!-- Header modular -->
+  
   <script src="../js/header-loader.js"></script>
-
 
   <main class="page-container">
     <h1 class="module-title">Aprender sobre Vida Saludable</h1>
-    <p class="p_subtle" style="margin-bottom: 24px;">Artículos, consejos y recetas para una vida más nutritiva y equilibrada.</p>
+    <p class="p_subtle" style="text-align: center; margin-bottom: 32px;">
+      Artículos, consejos y recetas para una vida más nutritiva y equilibrada.
+    </p>
 
-    <!-- Filtros y búsqueda -->
     <div class="card" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:32px;">
-      <input type="search" class="search-input-header" placeholder="Buscar contenido..." style="flex:1; max-width:320px; align-items: center;" />
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn btn-edit">Todos</button>
-        <button class="btn btn-edit">Artículo</button>
-        <button class="btn btn-edit">Consejo</button>
-        <button class="btn btn-edit">Receta</button>
+      <input type="search" id="searchInput" class="search-input-header" placeholder="Buscar contenido..." style="flex:1; max-width:320px;" />
+      
+      <div id="filterContainer" style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-edit filter-btn active" data-category="Todos">Todos</button>
+        <button class="btn btn-edit filter-btn" data-category="Artículo">Artículo</button>
+        <button class="btn btn-edit filter-btn" data-category="Consejo">Consejo</button>
+        <button class="btn btn-edit filter-btn" data-category="Receta">Receta</button>
       </div>
     </div>
 
-    <!-- Tarjetas de contenido en 3 columnas -->
-    <div class="grid-2 learn-grid">
+    <div class="learn-grid">
+      
       <div class="card card-learn">
         <img src="../assets/img/dietabalanceada.png" alt="Dieta balanceada" class="learn-img" />
         <span class="learn-tag">Artículo</span>
         <h3>Los beneficios de una dieta balanceada</h3>
         <p>Descubre cómo una dieta equilibrada puede mejorar tu salud y bienestar general.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn" 
+          data-title="Los beneficios de una dieta balanceada"
+          data-image="../assets/img/dietabalanceada.png"
+          data-tag="Artículo"
+          data-content="Una dieta balanceada no solo ayuda a controlar el peso, sino que mejora tu estado de ánimo y niveles de energía. <br><br><strong>Puntos clave:</strong><br>• Incluye proteínas en cada comida.<br>• Consume 5 porciones de frutas y verduras al día.<br>• Reduce el consumo de ultraprocesados.<br><br>Al mantener este equilibrio, tu cuerpo funcionará de manera óptima y reducirás el riesgo de enfermedades crónicas como la diabetes o hipertensión.">
+          Leer más
+        </button>
       </div>
 
       <div class="card card-learn">
@@ -41,7 +48,13 @@
         <span class="learn-tag">Consejo</span>
         <h3>Hidratación: clave para el rendimiento</h3>
         <p>Aprende por qué mantenerse hidratado es esencial para tu energía y concentración.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn"
+          data-title="Hidratación: clave para el rendimiento"
+          data-image="../assets/img/hidratacion.png"
+          data-tag="Consejo"
+          data-content="El agua es el componente principal del cuerpo humano. Una hidratación adecuada regula la temperatura corporal, mantiene las articulaciones lubricadas y previene infecciones.<br><br><strong>¿Sabías que?</strong><br>La deshidratación leve puede causar fatiga, dolor de cabeza y falta de concentración inmediata.<br><br>Tip: Lleva siempre una botella reutilizable contigo.">
+          Leer más
+        </button>
       </div>
 
       <div class="card card-learn">
@@ -49,7 +62,13 @@
         <span class="learn-tag">Receta</span>
         <h3>Ensalada de Quinoa con Vegetales</h3>
         <p>Una receta nutritiva y fácil de preparar para tus comidas diarias.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn"
+          data-title="Ensalada de Quinoa con Vegetales"
+          data-image="../assets/img/ensaladadequinoa.png"
+          data-tag="Receta"
+          data-content="<strong>Ingredientes:</strong><br>• 1 taza de quinoa cocida<br>• 1/2 pepino picado<br>• 1 tomate en cubos<br>• 1/4 taza de maíz dulce<br>• Jugo de limón, sal y pimienta.<br><br><strong>Preparación:</strong><br>1. Mezcla la quinoa fría con los vegetales en un bol grande.<br>2. Adereza con el limón, un chorrito de aceite de oliva, sal y pimienta.<br>3. Sirve frío. ¡Es perfecto para el almuerzo en la oficina!">
+          Leer más
+        </button>
       </div>
 
       <div class="card card-learn">
@@ -57,15 +76,27 @@
         <span class="learn-tag">Artículo</span>
         <h3>El poder de las proteínas vegetales</h3>
         <p>Explora los beneficios de incorporar proteínas vegetales en tu dieta.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn"
+          data-title="El poder de las proteínas vegetales"
+          data-image="../assets/img/proteinavegetal.png"
+          data-tag="Artículo"
+          data-content="Las proteínas vegetales (lentejas, garbanzos, tofu, frijoles) son excelentes porque aportan fibra y no contienen colesterol, a diferencia de las carnes rojas.<br><br>Sustituir la carne un par de días a la semana puede mejorar tu digestión y reducir tu huella de carbono. ¡Intenta el 'Lunes sin carne'!">
+          Leer más
+        </button>
       </div>
 
       <div class="card card-learn">
         <img src="../assets/img/comidasemanal.png" alt="Planificación semanal" class="learn-img" />
         <span class="learn-tag">Consejo</span>
-        <h3>Planificación de comidas para la semana</h3>
+        <h3>Planificación de comidas (Meal Prep)</h3>
         <p>Consejos prácticos para organizar tus comidas y ahorrar tiempo.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn"
+          data-title="Planificación de comidas para la semana"
+          data-image="../assets/img/comidasemanal.png"
+          data-tag="Consejo"
+          data-content="El 'Meal Prep' consiste en cocinar por bloques para ahorrar tiempo. <br><br><strong>Pasos para iniciarte:</strong><br>1. Elige un día (ej. Domingo) para cocinar bases: arroz integral, pollo desmenuzado, verduras al horno.<br>2. Guárdalos en tuppers herméticos.<br>3. Durante la semana, solo mezcla y calienta. Evitarás pedir comida rápida por falta de tiempo.">
+          Leer más
+        </button>
       </div>
 
       <div class="card card-learn">
@@ -73,12 +104,35 @@
         <span class="learn-tag">Receta</span>
         <h3>Batido Verde Energizante</h3>
         <p>Una bebida saludable para comenzar el día con energía.</p>
-        <a href="#" class="btn btn-secondary btn-small">Leer más</a>
+        <button class="btn btn-secondary btn-small open-modal-btn"
+          data-title="Batido Verde Energizante"
+          data-image="../assets/img/batidoenergizante.png"
+          data-tag="Receta"
+          data-content="<strong>Ingredientes:</strong><br>• 1 puñado de espinacas frescas<br>• 1 manzana verde<br>• 1/2 plátano congelado<br>• 1 taza de agua o leche de almendras<br><br><strong>Instrucciones:</strong><br>Licúa todo hasta obtener una mezcla homogénea. Este batido es rico en hierro y fibra, ideal para desayunos rápidos.">
+          Leer más
+        </button>
       </div>
     </div>
   </main>
 
-  <!-- Footer modular -->
+  <dialog id="article-modal" class="modal">
+    <div style="text-align: right;">
+      <button id="close-modal-btn" class="btn-edit" style="border:none; font-size:1.5rem; cursor:pointer;" aria-label="Cerrar">&times;</button>
+    </div>
+    
+    <div class="modal-body">
+      <img id="modal-img-display" src="" alt="" class="learn-img" style="height: 250px; object-fit: cover; margin-bottom: 20px;">
+      <span id="modal-tag-display" class="learn-tag" style="margin-bottom: 10px; display:inline-block;"></span>
+      <h2 id="modal-title-display" style="margin-bottom: 15px; color: var(--color-principal);"></h2>
+      <div id="modal-content-display" style="line-height: 1.8; color: var(--color-texto-secundario);">
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+      <button class="btn btn--primary" id="close-modal-action">Entendido</button>
+    </div>
+  </dialog>
+
   <script>
     fetch('../components/footer.html')
       .then(res => res.text())
@@ -86,39 +140,42 @@
         document.body.insertAdjacentHTML('beforeend', html);
       });
   </script>
+
+  <script src="../js/learning.js"></script>
+
+  <nav class="mobile-nav-bar">
+    <a href="dashboard.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">🏠</span>
+        <span class="mobile-nav-text">Inicio</span>
+    </a>
+    <a href="registro_alimentos.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">➕</span>
+        <span class="mobile-nav-text">Registro</span>
+    </a>
+    <a href="nutritional-goals.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">❤️</span>
+        <span class="mobile-nav-text">Metas</span>
+    </a>
+    <a href="practicas_saludables.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">🌱</span>
+        <span class="mobile-nav-text">Prácticas</span>
+    </a>
+    <a href="regitro-y-analisis.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">📊</span>
+        <span class="mobile-nav-text">Reportes</span>
+    </a>
+    <a href="aprender-vida-saludable.html" class="mobile-nav-link active">
+        <span class="mobile-nav-icon">📚</span>
+        <span class="mobile-nav-text">Aprender</span>
+    </a>
+    <a href="foro-comunidad.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">📫</span>
+        <span class="mobile-nav-text">Foro</span>
+    </a>
+    <a href="account-settings.html" class="mobile-nav-link">
+        <span class="mobile-nav-icon">👤</span>
+        <span class="mobile-nav-text">Perfil</span>
+    </a>
+  </nav>
 </body>
-<nav class="mobile-nav-bar">
-        <a href="dashboard.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">🏠</span>
-            <span class="mobile-nav-text">Inicio</span>
-        </a>
-        <a href="registro_alimentos.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">➕</span>
-            <span class="mobile-nav-text">Registro</span>
-        </a>
-        <a href="nutritional-goals.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">❤️</span>
-            <span class="mobile-nav-text">Metas</span>
-        </a>
-        <a href="practicas_saludables.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">🌱</span>
-            <span class="mobile-nav-text">Prácticas</span>
-        </a>
-        <a href="regitro-y-analisis.html" class="mobile-nav-link active">
-            <span class="mobile-nav-icon">📊</span>
-            <span class="mobile-nav-text">Reportes</span>
-        </a>
-        <a href="aprender-vida-saludable.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">📚</span>
-            <span class="mobile-nav-text">Aprender</span>
-        </a>
-        <a href="foro-comunidad.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">📫</span>
-            <span class="mobile-nav-text">Foro</span>
-        </a>
-        <a href="account-settings.html" class="mobile-nav-link">
-            <span class="mobile-nav-icon">👤</span>
-            <span class="mobile-nav-text">Perfil</span>
-        </a>
-    </nav>
 </html>
