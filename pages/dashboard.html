@@ -59,14 +59,10 @@
       </div>
 
   <div class="card dashboard-practices-card">
-  <h3>Prácticas Recientes</h3>
-  <ul class="recent-practices-list">
-   <li>✔️ Completada la meditación diaria.</li>
-   <li>🏋️ Sesión de ejercicio cardiovascular realizada.</li>
-   <li>💧 Bebí 2 litros de agua.</li>
-   <li>🍞 Desayuno alto en proteínas registrado.</li>
-  </ul>
- </div>
+    <h3>Prácticas Recientes</h3>
+    <ul class="recent-practices-list" id="dashboard-practices-list">
+    </ul>
+  </div>
 </aside>
   </main>
 
@@ -106,6 +102,8 @@
     </nav>
 
   <script src="../js/dashboard.js"></script>
+  <script src="../js/search.js"></script>
+
   <script>
     fetch('../components/footer.html')
       .then(res => res.text())
