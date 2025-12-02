@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Foro de la Comunidad — NutriTrack Web</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Estilos extra para la sección de comentarios */
+    .comment-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border-left: 4px solid var(--color-principal, #4CAF50);
+    }
+    .comment-author { font-weight: bold; font-size: 0.9em; margin-bottom: 4px; }
+    .comment-author.team { color: #2e7d32; display: flex; align-items: center; gap: 5px; }
+    .comment-text { font-size: 0.95em; color: #333; }
+    .forum-topic { cursor: pointer; transition: transform 0.2s; }
+    .forum-topic:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  </style>
 </head>
 <body>
   <script src="../js/header-loader.js"></script>
@@ -16,56 +31,13 @@
       
       <div style="display: flex; gap: 15px; justify-content: center; margin-top: 16px;">
           <button id="btn-open-modal" class="btn btn-primary">+ Crear nuevo tema</button>
-          
           <button id="btn-manage-topics" class="btn btn--ghost" style="border: 1px solid var(--color-principal); color: var(--color-principal); background: transparent;">
               ⚙️ Administrar mis temas
           </button>
       </div>
     </div>
 
-    <div class="forum-grid">
-      <div class="card forum-topic">
-        <span class="badge badge-new">Nuevo</span>
-        <h3>Beneficios de una dieta mediterránea para el control del peso</h3>
-        <p>Descubre cómo esta dieta puede ayudarte a mantener un peso saludable.</p>
-        <small>Por: Laura Sánchez · 01/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>¿Cómo calcular tus macros para ganar masa muscular de forma efectiva?</h3>
-        <p>Aprende a ajustar tus macronutrientes según tus objetivos de entrenamiento.</p>
-        <small>Por: Carlos Méndez · 02/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>Recetas rápidas y saludables para cenas entre semana</h3>
-        <p>Opciones fáciles y nutritivas para terminar el día con energía.</p>
-        <small>Por: Ana Torres · 03/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>Mitos y verdades sobre los suplementos de proteínas</h3>
-        <p>Información basada en evidencia para tomar decisiones informadas.</p>
-        <small>Por: Fernando Ruiz · 04/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>Estrategias efectivas para mantener la motivación en tu plan nutricional</h3>
-        <p>Consejos prácticos para no abandonar tus metas de salud.</p>
-        <small>Por: Isabel Gómez · 05/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>Guía completa para principiantes en ayuno intermitente</h3>
-        <p>Conoce los beneficios y cómo empezar de manera segura.</p>
-        <small>Por: Javier Peña · 06/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>¿Qué comer antes y después de entrenar para optimizar tu rendimiento?</h3>
-        <p>Recomendaciones nutricionales para mejorar tus resultados.</p>
-        <small>Por: Patricia León · 07/10/2023</small>
-      </div>
-      <div class="card forum-topic">
-        <h3>El impacto del sueño en el metabolismo y la pérdida de peso</h3>
-        <p>La importancia de dormir bien para alcanzar tus objetivos.</p>
-        <small>Por: Sergio Vargas · 08/10/2023</small>
-      </div>
-    </div>
+    <div class="forum-grid" id="grid-container"></div>
   </main>
 
   <dialog id="modal-nuevo-tema" class="modal card">
@@ -87,28 +59,34 @@
   </dialog>
 
   <dialog id="modal-administrar" class="modal card">
-    <h2 class="form__title">Mis Temas Publicados</h2>
-    <p class="p_subtle" style="text-align:center; margin-bottom: 15px;">
-        Aquí puedes eliminar los temas que has creado.
-    </p>
-    
-    <div id="user-topics-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px; border-top: 1px solid #eee;">
-        </div>
-
-    <div style="display:flex; justify-content:flex-end;">
+    <h2 class="form__title" style="font-size:1.5rem;">Mis Temas</h2>
+    <p class="p_subtle" style="text-align:center;">Gestión de tus publicaciones</p>
+    <div id="user-topics-list" style="max-height: 300px; overflow-y: auto; margin: 15px 0;"></div>
+    <div style="display:flex; justify-content:flex-end; border-top:1px solid #eee; padding-top:15px;">
       <button type="button" class="btn" id="btn-close-manage">Cerrar</button>
     </div>
   </dialog>
 
-  <dialog id="modal-administrar" class="modal card">
-    <h2 class="form__title" style="font-size:1.5rem;">Mis Temas</h2>
-    <p class="p_subtle" style="text-align:center;">Gestión de tus publicaciones</p>
+  <dialog id="modal-detalle" class="modal card" style="max-width: 700px; width: 90%;">
+    <div id="detalle-contenido">
+        </div>
     
-    <div id="user-topics-list" style="max-height: 300px; overflow-y: auto; margin: 15px 0;">
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+    
+    <h3 style="font-size: 1.2em; margin-bottom: 15px;">Comentarios</h3>
+    <div id="lista-comentarios" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px;">
         </div>
 
-    <div style="display:flex; justify-content:flex-end; border-top:1px solid #eee; padding-top:15px;">
-      <button type="button" class="btn" id="btn-close-manage">Cerrar</button>
+    <form id="form-comentario" style="background: #f0f0f0; padding: 15px; border-radius: 8px;">
+        <textarea id="nuevo-comentario-texto" rows="3" style="width: 100%; border: 1px solid #ccc; padding: 8px; border-radius: 4px;" placeholder="Escribe tu opinión o consejo..." required></textarea>
+        <div style="display:flex; justify-content:space-between; margin-top: 10px; align-items: center;">
+            <small style="color: #666;">Comentando como: <strong>Yo</strong></small>
+            <button type="submit" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.9em;">Comentar</button>
+        </div>
+    </form>
+
+    <div style="display:flex; justify-content:flex-end; margin-top: 15px;">
+        <button type="button" class="btn" id="btn-close-detalle">Cerrar</button>
     </div>
   </dialog>
 
@@ -121,40 +99,9 @@
   </script>
 
   <script src="../js/forum.js"></script>
-
+  
   <nav class="mobile-nav-bar">
-    <a href="dashboard.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">🏠</span>
-        <span class="mobile-nav-text">Inicio</span>
-    </a>
-    <a href="registro_alimentos.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">➕</span>
-        <span class="mobile-nav-text">Registro</span>
-    </a>
-    <a href="nutritional-goals.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">❤️</span>
-        <span class="mobile-nav-text">Metas</span>
-    </a>
-    <a href="practicas_saludables.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">🌱</span>
-        <span class="mobile-nav-text">Prácticas</span>
-    </a>
-    <a href="regitro-y-analisis.html" class="mobile-nav-link active">
-        <span class="mobile-nav-icon">📊</span>
-        <span class="mobile-nav-text">Reportes</span>
-    </a>
-    <a href="aprender-vida-saludable.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">📚</span>
-        <span class="mobile-nav-text">Aprender</span>
-    </a>
-    <a href="foro-comunidad.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">📫</span>
-        <span class="mobile-nav-text">Foro</span>
-    </a>
-    <a href="account-settings.html" class="mobile-nav-link">
-        <span class="mobile-nav-icon">👤</span>
-        <span class="mobile-nav-text">Perfil</span>
-    </a>
-  </nav>
+    <a href="dashboard.html" class="mobile-nav-link"><span class="mobile-nav-icon">🏠</span><span class="mobile-nav-text">Inicio</span></a>
+    </nav>
 </body>
 </html>
