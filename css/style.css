@@ -88,6 +88,23 @@ body {
 .btn-danger, .btn--danger, .btn-delete { background-color: var(--color-error); color: #fff; text-align: center; padding: 5px 12px; font-size: 0.9em; border-color: var(--color-error); } 
 .btn-edit { background-color: transparent; color: var(--color-principal); border: 1px solid var(--color-principal); padding: 5px 12px; font-size: 0.9em; margin-right: 5px; text-align: center } 
 
+.filter-btn.active {
+    background-color: var(--color-principal);
+    color: white;
+    border-color: var(--color-principal);
+}
+
+
+.no-results-message {
+    text-align: center;
+    width: 100%;
+    grid-column: 1 / -1; 
+    padding: 40px;
+    color: var(--color-texto-secundario);
+    font-size: 1.1em;
+    display: none; 
+}
+
 /* -- INPUTS Y FORMULARIOS -- */
 input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], select, input[type="search"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid var(--color-borde); border-radius: 4px; font-size: 1em; }
 .registro-form label { display: block; margin-bottom: 5px; font-weight: 500; }
