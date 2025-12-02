@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(html => {
       document.body.insertAdjacentHTML('afterbegin', html);
 
-      // Activar botón de cerrar sesión después de insertar el header
+      // Activar botón de cerrar sesión
       const btnCerrar = document.getElementById('cerrar-sesion');
       if (btnCerrar) {
         btnCerrar.addEventListener('click', (e) => {
@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.removeItem('usuarioActivo');
           window.location.href = '../index.html';
         });
+      }
+
+      if (typeof inicializarBusquedaGlobal === "function") {
+        inicializarBusquedaGlobal();
       }
     });
 });
